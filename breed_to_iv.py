@@ -49,10 +49,10 @@ for _ in range(runs):
         for i in range(6):
             if i in iv_slots:  # For the positions left in the pool for inheritance
                 if random.random() <= 0.5:  # Inherit IV at this position from male
+                    offspring[i] = male[i]
                     if interactive:
                         perfect_iv_text = ' (31)' if male[i] == 31 else ''  # Signify when a 31 is inherited
                         print(f'[IV {i}] Male{perfect_iv_text}')
-                    offspring[i] = male[i]
                 else:  # Inherit IV at this position from female
                     if interactive:
                         perfect_iv_text = '(31)' if female[i] == 31 else ''  # Signify when a 31 is inherited
