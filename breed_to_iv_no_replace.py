@@ -2,7 +2,7 @@ import random
 
 # ---------- SETTINGS
 target_31s = 6  # AT LEAST how many 31 IVs is the goal? 6 = 6IV, must be between 0-6.
-male_chance = 0.875  # Chance for offspring to be male
+male_chance = 0.85  # Chance for offspring to be male
 must_be_male = True
 runs = 10000  # How many trials to use to find an average
 destiny_knot = None  # [True = always use] [False = never use] [None = use optimally]
@@ -11,10 +11,10 @@ destiny_knot = None  # [True = always use] [False = never use] [None = use optim
 interactive = False  # Pause after each breed, print detailed info (press enter or send any input to continue)
 
 # random.seed(3555484)  # Can set seed or just turn it off by commenting out
-all_tries = 0  # Total tries to reach goal from each run, averaged at the end
+all_tries = 0  # List of total tries to reach goal from each run, averaged at the end
 for _ in range(runs):
     male = [31, 31, 31, 31, 31, 31]  # IVs are represented as a list
-    female = [31, 31, 31, 31, 31, 31]
+    female = [31, 31, 31, 31, 31, 0]
 
     offspring = [0, 0, 0, 0, 0, 0]  # Placeholder list for generating the offspring
     offspring_gender = None  # Placeholder value
@@ -73,54 +73,14 @@ for _ in range(runs):
         offspring_31s = offspring.count(31)
         if random.random() <= male_chance:  # Gender roll
             offspring_gender = 'male'
-            new_total_unique_31s = 0  # How many unique 31s would we have if we did a replacement?
-            for i in range(6):
-                if offspring[i] == 31 or female[i] == 31:
-                    new_total_unique_31s += 1
-            # It's not worth replacing in the case where you get more overall 31s but less unique 31s
-            beats_unique_31s = new_total_unique_31s > total_unique_31s
-            if interactive:
-                print(f'{new_total_unique_31s=}')
-                print(f'{total_unique_31s=}')
-                if beats_unique_31s:
-                    print(f"Beats unique 31s! ({total_unique_31s} to {new_total_unique_31s})")
-                    print(f"Overall 31s goes from {male_31s + female_31s} to {offspring_31s + female_31s}")
-                if offspring_31s > male_31s:
-                    if new_total_unique_31s >= total_unique_31s:
-                        print('Offspring has more 31s and unique is at least as good')
-                    else:
-                        print('Offspring has more 31s but unique would be lower')
-            if beats_unique_31s or offspring_31s > male_31s and new_total_unique_31s >= total_unique_31s:
-                if interactive:
-                    print('>>> Replace male')
-                male = offspring.copy()
         else:
             offspring_gender = 'female'
-            new_total_unique_31s = 0  # How many unique 31s would we have if we did a replacement?
-            for i in range(6):
-                if offspring[i] == 31 or male[i] == 31:
-                    new_total_unique_31s += 1
-            # It's not worth replacing in the case where you get more overall 31s but less unique 31s
-            beats_unique_31s = new_total_unique_31s > total_unique_31s
-            if interactive:
-                print(f'{new_total_unique_31s=}')
-                print(f'{total_unique_31s=}')
-                if beats_unique_31s:
-                    print(f"Beats unique 31s! ({total_unique_31s} to {new_total_unique_31s})")
-                    print(f"Overall 31s goes from {male_31s + female_31s} to {male_31s + offspring_31s}")
-                if offspring_31s > female_31s:
-                    if new_total_unique_31s >= total_unique_31s:
-                        print('Offspring has more 31s and unique is at least as good')
-                    else:
-                        print('Offspring has more 31s but unique would be lower')
-            if beats_unique_31s or offspring_31s > female_31s and new_total_unique_31s >= total_unique_31s:
-                if interactive:
-                    print('>>> Replace female')
-                female = offspring.copy()
         if interactive:
             print(f'Offspring #{tries} = {offspring} ({offspring_gender.capitalize()} {offspring.count(31)}IV)')
             input()  # Just to pause; enter anything to continue
     if interactive:
         print(f'GOAL REACHED AFTER {tries} TRIES')
     all_tries += tries
-print(f'Average amount of tries: {all_tries / runs}')
+avg_tries = all_tries/runs
+print(f'Average amount of tries: {avg_tries}')
+print(f'Chance: {1/avg_tries * 100:.2f}%')
