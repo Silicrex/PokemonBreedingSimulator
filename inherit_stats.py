@@ -1,8 +1,8 @@
 from helper_functions import *
 runs = 100000
 
-specific_stats = 1  # Chance of how many specific stats being inherited? Range of 1 through number of IVs inherited
-destiny_knot = True  # True or False toggle
+specific_stats = 3  # Chance of how many specific stats being inherited? Range of 1 through number of IVs inherited
+destiny_knot = False  # True or False toggle
 
 stats_included = 0  # Number of times successful
 for _ in range(runs):
@@ -13,6 +13,6 @@ for _ in range(runs):
     if set(range(specific_stats)).issubset(set(iv_slots)):
         stats_included += 1
 
-result = stats_included / runs
+result = stats_included / runs  # Approximation based on avg
 print(f'Avg % of times specific {specific_stats} inherited: {stats_included / runs:.4%}\n'
       f'Avg % of times not: {(runs - stats_included) / runs:.4%}')

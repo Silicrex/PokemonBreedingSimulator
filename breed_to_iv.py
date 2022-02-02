@@ -3,17 +3,15 @@ import random
 # ---------- SETTINGS
 target_31s = 6  # AT LEAST how many 31 IVs is the goal? 6 = 6IV, must be between 0-6.
 male_chance = 0.875  # Chance for offspring to be male
-must_be_male = True
+must_be_male = True  # Is the goal a male 6IV offspring instead of any 6IV offspring?
 runs = 10000  # How many trials to use to find an average
 destiny_knot = None  # [True = always use] [False = never use] [None = use optimally]
-# Destiny knot causes 5 IVs to be inherited by the offspring, instead of the normal 3
-# Destiny knot is always better to use except when 0IV+0IV, or 1IV+1IV where the 31 is in the same position
 interactive = False  # Pause after each breed, print detailed info (press enter or send any input to continue)
 
 # random.seed(3555484)  # Can set seed or just turn it off by commenting out
 all_tries = 0  # Total tries to reach goal from each run, averaged at the end
 for _ in range(runs):
-    male = [31, 31, 31, 31, 31, 31]  # IVs are represented as a list
+    male = [31, 31, 31, 31, 31, 31]
     female = [31, 31, 31, 31, 31, 31]
 
     offspring = [0, 0, 0, 0, 0, 0]  # Placeholder list for generating the offspring
