@@ -1,6 +1,6 @@
 
-# PokemonBreedingSimulator  
-## What is this?  
+# PokemonBreedingSimulator
+## What is this?
 * Various simulations for Pokemon **IV breeding**. **IVs** are hereditary values which have a role in determining the **stat values** of a Pokemon (they're like points added onto the species' base stats). Each Pokemon has **six IVs**— one for Health, Attack, Defense, Special Attack, Special Defense, and Speed. IVs range from **0–31** in value.  
 * The general **goal** of IV breeding is to get an **offspring with max-value IVs for all six stats**. This could be for **competitive, collector, completionist**, or etc purposes!  
 * Progress is made by **selectively breeding** to keep desirable values and remove undesirable values.  
