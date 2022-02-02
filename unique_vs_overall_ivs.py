@@ -3,9 +3,9 @@ import random
 # ---------- SETTINGS
 target_31s = 5  # How many 31 IV's is the target? 6 = 6IV, must be between 0-6
 male_chance = 0.5
-seed = random.random()  # "None" or seed. Used for running the comparisons on the same seed.
 runs = 1000
 interactive = False
+seed = random.random()  # "None" or seed. Used for running the comparisons on the same seed.
 
 if isinstance(seed, int):
     random.seed(seed)

@@ -8,9 +8,9 @@ attack_included = 0  # How many times was attack selected for inheritance
 for _ in range(runs):
     iv_slots = [0, 1, 2, 3, 4, 5]
     if destiny_knot:  # Destiny knot = inherit all but one
-        iv_slots = apply_destiny_knot(iv_slots)
+        iv_slots = roll_inheritance(iv_slots, destiny_knot=True)
     else:  # Otherwise, inherit 3 of 6
-        iv_slots = apply_normal_inheritance(iv_slots)
+        iv_slots = roll_inheritance(iv_slots)
     if 0 in iv_slots:
         attack_included += 1
 
