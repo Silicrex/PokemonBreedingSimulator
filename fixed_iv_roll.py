@@ -1,7 +1,7 @@
 import random
 import math
 
-# Some Pokemon in the game are fixed to have at least three 31s. What's the chance you get the three you want?
+# Some Pokemon in the game are fixed to have at least three 31s. What's the chance you get the three (fixed) you want?
 # (It's the same as inheriting 3 stats without Destiny Knot)
 # Also I see now this is just a 6-choose-3 combinations problem
 
