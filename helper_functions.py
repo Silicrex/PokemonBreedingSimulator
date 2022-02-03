@@ -3,14 +3,14 @@ import random
 
 # ------------------------------ IV slot inheritance
 
-def roll_inheritance(iv_slots, destiny_knot=False):  # Take iv_slots list, return new list
-    iv_slots_copy = iv_slots.copy()
-    if destiny_knot:
-        iv_slots_copy.remove(random.choice(iv_slots_copy))
-    else:
+def roll_inheritance(destiny_knot=False):  # For determining which IVs to inherit, numbers are slot numbers
+    iv_slots = [0, 1, 2, 3, 4, 5]
+    if destiny_knot:  # Remove 1
+        iv_slots.remove(random.choice(iv_slots))
+    else:  # Remove 3
         for _ in range(3):
-            iv_slots_copy.remove(random.choice(iv_slots_copy))
-    return iv_slots_copy
+            iv_slots.remove(random.choice(iv_slots))
+    return iv_slots
 
 
 # ------------------------------ Optimal breeding strategies
@@ -59,3 +59,33 @@ def roll_gender(male_chance):
         return 'male'
     else:
         return 'female'
+
+
+def check_for_replace(same_gender, other_gender, offspring, interactive=False):
+    same_gender_ivs = same_gender.count(31)
+    other_gender_ivs = other_gender.count(31)
+    offspring_31s = offspring.count(31)
+    total_unique_31s = 0
+    new_total_unique_31s = 0  # How many unique 31s would we have if we did a replacement?
+    for i in range(6):
+        if same_gender[i] == 31 or other_gender[i] == 31:
+            total_unique_31s += 1
+        if offspring[i] == 31 or other_gender[i] == 31:
+            new_total_unique_31s += 1
+    # It's not worth replacing in the case where you get more overall 31s but less unique 31s
+    beats_unique_31s = new_total_unique_31s > total_unique_31s
+    if interactive:
+        print(f'{new_total_unique_31s=}')
+        print(f'{total_unique_31s=}')
+        if beats_unique_31s:
+            print(f"Beats unique 31s! ({total_unique_31s} to {new_total_unique_31s})")
+            print(f"Overall 31s goes from {same_gender_ivs + other_gender_ivs} to {offspring_31s + other_gender_ivs}")
+        if offspring_31s > same_gender_ivs:
+            if new_total_unique_31s >= total_unique_31s:
+                print('Offspring has more 31s and unique is at least as good')
+            else:
+                print('Offspring has more 31s but unique would be lower')
+    if beats_unique_31s or offspring_31s > same_gender_ivs and new_total_unique_31s >= total_unique_31s:
+        return True
+    else:
+        return False
