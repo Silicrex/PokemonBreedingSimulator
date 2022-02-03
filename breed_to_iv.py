@@ -2,8 +2,8 @@ import random
 
 # ---------- SETTINGS
 target_31s = 6  # AT LEAST how many 31 IVs is the goal? 6 = 6IV, must be between 0-6.
-male_chance = 0.875  # Chance for offspring to be male
-must_be_male = True  # Is the goal a male 6IV offspring instead of any 6IV offspring?
+male_chance = 0.5  # Chance for offspring to be male
+must_be_male = False  # Is the goal a male 6IV offspring instead of any 6IV offspring?
 runs = 10000  # How many trials to use to find an average
 destiny_knot = None  # [True = always use] [False = never use] [None = use optimally]
 interactive = False  # Pause after each breed, print detailed info (press enter or send any input to continue)
@@ -18,14 +18,11 @@ for _ in range(runs):
     offspring_gender = None  # Placeholder value
 
     tries = 0  # Tries for current run
-    # while not (offspring.count(31) == 6 and offspring_gender == 'male'):  # Breed for 6IV male instead
-    # You would specifically want a male in the case of propagating the IVs to a different species in the same egg group
     while True:
         if offspring.count(31) >= target_31s:
-            if must_be_male:
-                if offspring_gender == 'male':
-                    break
-            else:
+            if not must_be_male:
+                break
+            if must_be_male and offspring_gender == 'male':
                 break
         tries += 1
         male_31s = male.count(31)
