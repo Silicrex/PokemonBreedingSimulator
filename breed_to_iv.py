@@ -43,17 +43,15 @@ for _ in range(runs):
         offspring_31s = offspring.count(31)
         offspring_gender = roll_gender(male_chance)
         if offspring_gender == 'male':
-            if do_replacements:
-                if check_for_replace(male, female, offspring, interactive):
-                    if interactive:
-                        print('>>> Replace male')
-                    male = offspring.copy()
+            if do_replacements and check_for_replace(male, female, offspring, interactive):
+                if interactive:
+                    print('>>> Replace male')
+                male = offspring.copy()
         else:
-            if do_replacements:
-                if check_for_replace(female, male, offspring, interactive):
-                    if interactive:
-                        print('>>> Replace female')
-                    female = offspring.copy()
+            if do_replacements and check_for_replace(female, male, offspring, interactive):
+                if interactive:
+                    print('>>> Replace female')
+                female = offspring.copy()
         if interactive:
             print(f'Offspring #{tries} = {offspring} ({offspring_gender.capitalize()} {offspring.count(31)}IV)')
             input()  # Just to pause; enter anything to continue

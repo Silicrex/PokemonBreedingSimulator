@@ -1,8 +1,7 @@
-import random
 from helper_functions import *
 
 # ---------- SETTINGS
-prioritize_uniques = True  # Care more about progress towards 6IV pool than IV count
+prioritize_uniques = False  # Care more about progress towards 6IV pool than IV count
 male_chance = 0.5
 runs = 1000
 
@@ -47,14 +46,14 @@ for male_31_ivs in range(7):  # Nested loop to get 0IV-0IV, 0IV-1IV, 0IV-2IV, et
                             iv_slots = roll_inheritance()
                         offspring = generate_offspring(male, female, iv_slots)
                         if roll_gender(male_chance) == 'male':
-                            if offspring.count(31) > male.count(31) and not prioritize_uniques:
+                            if not prioritize_uniques and offspring.count(31) > male.count(31):
                                 break
-                            elif check_for_replace(male, female, offspring):
+                            elif prioritize_uniques and check_for_replace(male, female, offspring):
                                 break
                         else:
-                            if offspring.count(31) > female.count(31) and not prioritize_uniques:
+                            if not prioritize_uniques and offspring.count(31) > female.count(31):
                                 break
-                            elif check_for_replace(female, male, offspring):
+                            elif prioritize_uniques and check_for_replace(female, male, offspring):
                                 break
 
             print(f'{male_31_ivs}IV + {female_31_ivs}IV ({upper_bound - overlap_number} overlaps)'

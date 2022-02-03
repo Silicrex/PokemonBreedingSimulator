@@ -26,6 +26,7 @@ def check_for_destiny_knot(male, female):  # Return True if knot would be optima
         if male[i] == 31 or female[i] == 31:
             total_unique_31s += 1
     if total_unique_31s == total_overall_31s / 2:  # When unique 31s is half of overall, means all are overlaps
+        print(f'RETURN FALSE: {total_unique_31s} = {total_overall_31s} / 2')
         return False
     else:
         return True
