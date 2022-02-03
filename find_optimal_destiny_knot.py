@@ -1,9 +1,10 @@
 import random
+from helper_functions import *
 
 # ---------- SETTINGS
+prioritize_uniques = True  # Care more about progress towards 6IV pool than IV count
 male_chance = 0.5
 runs = 1000
-
 
 for male_31_ivs in range(7):  # Nested loop to get 0IV-0IV, 0IV-1IV, 0IV-2IV, etc without repeats (2IV-3IV == 3IV-2IV)
     for female_31_ivs in range(male_31_ivs, 7):
@@ -33,58 +34,28 @@ for male_31_ivs in range(7):  # Nested loop to get 0IV-0IV, 0IV-1IV, 0IV-2IV, et
                 # Shift stats to the left (take first element, put it at the end; right shifting won't always work here)
                 male.append(male.pop(0))
 
-            # Simulate with knot first
             tries_with_knot = 0
-            for _ in range(runs):
-                offspring = [0, 0, 0, 0, 0, 0]
-
-                while True:
-                    tries_with_knot += 1
-                    iv_slots = [0, 1, 2, 3, 4, 5]
-                    iv_slots.remove(random.choice(iv_slots))  # Use destiny knot
-                    for i in range(6):
-                        if i in iv_slots:
-                            if random.random() <= 0.5:  # Male draw
-                                offspring[i] = male[i]
-                            else:  # Female draw
-                                offspring[i] = female[i]
-                        else:
-                            offspring[i] = random.randint(0, 31)
-                    if random.random() <= male_chance:  # Gender roll
-                        offspring_gender = 'male'
-                        if offspring.count(31) > male.count(31):
-                            break
-                    else:
-                        offspring_gender = 'female'
-                        if offspring.count(31) > female.count(31):
-                            break
-
-            # Simulate without knot
             tries_without_knot = 0
-            for _ in range(runs):
-                offspring = [0, 0, 0, 0, 0, 0]
-
-                while True:
-                    tries_without_knot += 1
-                    iv_slots = [0, 1, 2, 3, 4, 5]
-                    for _ in range(3):  # Non-destiny knot, leave 3 fixed, 3 random
-                        iv_slots.remove(random.choice(iv_slots))
-                    for i in range(6):
-                        if i in iv_slots:
-                            if random.random() <= 0.5:  # Male draw
-                                offspring[i] = male[i]
-                            else:  # Female draw
-                                offspring[i] = female[i]
+            for iteration in range(2):  # Do one run with destiny knot, then one without
+                for _ in range(runs):
+                    while True:
+                        if iteration == 0:  # First iteration, do with knot
+                            tries_with_knot += 1
+                            iv_slots = roll_inheritance(destiny_knot=True)
+                        else:  # Second iteration, do without knot
+                            tries_without_knot += 1
+                            iv_slots = roll_inheritance()
+                        offspring = generate_offspring(male, female, iv_slots)
+                        if roll_gender(male_chance) == 'male':
+                            if offspring.count(31) > male.count(31) and not prioritize_uniques:
+                                break
+                            elif check_for_replace(male, female, offspring):
+                                break
                         else:
-                            offspring[i] = random.randint(0, 31)
-                    if random.random() <= male_chance:  # Gender roll
-                        offspring_gender = 'male'
-                        if offspring.count(31) > male.count(31):
-                            break
-                    else:
-                        offspring_gender = 'female'
-                        if offspring.count(31) > female.count(31):
-                            break
+                            if offspring.count(31) > female.count(31) and not prioritize_uniques:
+                                break
+                            elif check_for_replace(female, male, offspring):
+                                break
 
             print(f'{male_31_ivs}IV + {female_31_ivs}IV ({upper_bound - overlap_number} overlaps)'
                   f'{"" if tries_with_knot < tries_without_knot else " (NO KNOT WINS)"}')
