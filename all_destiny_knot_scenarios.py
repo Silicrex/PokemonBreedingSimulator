@@ -1,10 +1,10 @@
 from helper_functions import *
 
 # ---------- SETTINGS
-prioritize_uniques = False  # Care more about progress towards 6IV pool than IV count
+prioritize_uniques = False  # Care more about progress towards 6IV pool than current IV count
 male_chance = 0.5
 runs = 1000
-
+seed = 123  # None or seed. If seed given, will do both tests in each iteration using the same seed
 for male_31_ivs in range(7):  # Nested loop to get 0IV-0IV, 0IV-1IV, 0IV-2IV, etc without repeats (2IV-3IV == 3IV-2IV)
     for female_31_ivs in range(male_31_ivs, 7):
         male = [0] * 6  # Start with 0IV
@@ -36,6 +36,8 @@ for male_31_ivs in range(7):  # Nested loop to get 0IV-0IV, 0IV-1IV, 0IV-2IV, et
             tries_with_knot = 0
             tries_without_knot = 0
             for iteration in range(2):  # Do one run with destiny knot, then one without
+                if seed is not None:
+                    random.seed(seed)
                 for _ in range(runs):
                     while True:
                         if iteration == 0:  # First iteration, do with knot

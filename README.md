@@ -4,7 +4,7 @@
 * Various simulations for Pokemon **IV breeding**. **IVs** are hereditary values which have a role in determining the **stat values** of a Pokemon (they're like points added onto the species' base stats). Each Pokemon has **six IVs**— one for Health, Attack, Defense, Special Attack, Special Defense, and Speed. IVs range from **0–31** in value.    
 * The general **goal** of IV breeding is to get an **offspring with max-value IVs for all six stats**. This could be for **competitive, collector, completionist**, or etc purposes!    
 * Progress is made by **selectively breeding** to keep desirable values and remove undesirable values.    
-* Testing is all for the **BDSP (Brilliant Diamond & Shining Pearl)** games.  
+* Testing is all for the **BDSP (Brilliant Diamond & Shining Pearl)** games. Most concepts should apply to all the modern games (only difference I can think of is the egg group propagation).
 ## Usage  
 * Files are meant to be edited and ran in an IDE. Results are printed to console.  
 ## What are the common terms/concepts of this project? 
@@ -26,8 +26,16 @@
 * There were three primary areas I wanted to investigate! **Optimal Destiny Knot usage**, **most efficient selection strategy**, and **egg group propagation**  
 * **Optimal Destiny Knot usage** to understand when inheriting more IVs from parents is beneficial and when it's actually disadvantageous. Under what circumstances should I use a Destiny Knot?  
 ## What does each file do? 
-Each **file** is its own **separate simulation**. Trials are run a number of times and then averaged. Some simulations support graphing. There are settings to control things like number of trials, offspring gender ratio, destiny knot usage, and target number of 31s.    
-* **breed_to_iv.py** is for average attempts to optimally breed to a certain \<n>IV offspring (offspring with n 31 IVs)  
+Each **file** is its own **separate simulation**. Trials are run a number of times and then averaged. Some simulations support graphing. Simulations have a variety of their own settings from things like number of trials, what selection method to use, offspring gender ratio, destiny knot usage, target number of 31s, seed, etc.   
+
+In some circumstances, a mathematical formula is used to calculate the real chance. When this is the case, there will be a distinction.
+
+* **breed_to_iv.py** — Simulates the average amount of tries to optimally breed to a certain number of desired IVs under the given conditions (optimal concerning progenitor replacements and destiny knot usage).
+* **all_destiny_knot_scenarios.py** — Goes through every possible starting condition of breeding and tests for the average amount of tries to make progress from that position, both with and without using a Destiny Knot.
+* **all_destiny_knot_scenarios_visualizer.py** — Visualizes all of the possible starting conditions mentioned above.
+* **unique_vs_overall_ivs.py** — Compares the efficiency of prioritizing the number of unique 31s in the pool versus overall 31s in the pool.
+* **roll_31.py** — Finds chance to roll at least one 31 given a certain amount of rolled stats.
+ 
 * **breed_to_any_iv_progress.py** is for seeing how many tries it takes to get an offspring that has more max-value IVs than the parent of the corresponding gender. Will run tests for both with and without a Destiny Knot, then compare.  
 * **breed_to_any_optimal_progress.py** is for seeing how many tries it takes to get an offspring that has a better IV pool than the parent of the corresponding gender, using the 'optimized' selection process (prioritize unique 31s instead of overall 31s). Will run tests for both with and without a Destiny Knot, then compare.  
 * **find_optimal_destiny_knot_for_ivs.py** is essentially **breed_to_any_iv_progress.py** but tries for each possible scenario, and reports in which cases not using a Destiny Knot is actually more efficient.  

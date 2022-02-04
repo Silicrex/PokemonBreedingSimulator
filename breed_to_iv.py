@@ -4,20 +4,24 @@ from helper_functions import *
 # ---------- SETTINGS
 target_31s = 6  # AT LEAST how many 31 IVs is the goal? 6 = 6IV, must be between 0-6.
 do_replacements = True  # Replace progenitors as progress is made True/False
-male_chance = 0.77  # Chance for offspring to be male
-must_be_male = True  # Is the goal a male 6IV offspring instead of any 6IV offspring?
 destiny_knot_setting = None  # [True = always use] [False = never use] [None = use optimally]
-runs = 1000  # How many trials to use to find an average
+male_chance = 0.5  # Chance for offspring to be male
+must_be_male = False  # Is the goal a male 6IV offspring instead of any 6IV offspring?
+runs = 10000  # How many trials to use to find an average
 seed = None  # None or seed
-interactive = False  # Pause after each breed, print detailed info (press enter or send any input to continue)
+interactive = True  # Pause after each breed, print detailed info (press enter or send any input to continue)
 
 if seed is not None:
     random.seed(seed)
 
+# Starting progenitors
+male_base = [0, 0, 0, 0, 0, 0]
+female_base = [0, 0, 0, 0, 0, 0]
+
 all_tries = 0  # Total tries to reach goal from each run, averaged at the end
 for _ in range(runs):
-    male = [31, 31, 31, 31, 31, 31]
-    female = [0, 0, 0, 0, 0, 0]
+    male = male_base.copy()
+    female = female_base.copy()
 
     offspring = [0, 0, 0, 0, 0, 0]  # Placeholder list for generating the offspring
     offspring_gender = None  # Placeholder value
@@ -36,8 +40,8 @@ for _ in range(runs):
             destiny_knot = destiny_knot_setting  # Bool
         iv_slots = roll_inheritance(destiny_knot)
         if interactive:
-            print(f'{male=}')
-            print(f'{female=}')
+            print(f'{male=} ({male.count(31)}IV)')
+            print(f'{female=} ({female.count(31)}IV)')
             print(f'Inherited IV positions: {iv_slots}')
         offspring = generate_offspring(male, female, iv_slots, interactive)
         offspring_31s = offspring.count(31)
@@ -58,6 +62,12 @@ for _ in range(runs):
     if interactive:
         print(f'GOAL REACHED AFTER {tries} TRIES')
     all_tries += tries
-avg_tries = all_tries/runs
-print(f'Average amount of tries: {avg_tries}')
-print(f'Chance: {1/avg_tries:.2%}')
+gender_text = ' Male' if must_be_male else ''
+base_overlaps = 0  # How many overlaps the original pair had
+for i in range(6):
+    if male_base[i] == 31 and female_base[i] == 31:
+        base_overlaps += 1
+overlaps_text = f"{base_overlaps} overlaps" if base_overlaps > 1 else f"{base_overlaps} overlap"
+print(f'{male_base.count(31)}IV Male + {female_base.count(31)}IV Female ({overlaps_text}) TO '
+      f'>= {target_31s}IV{gender_text}')
+print(f'Average amount of tries: {all_tries/runs}')

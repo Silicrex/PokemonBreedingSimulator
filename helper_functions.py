@@ -15,7 +15,7 @@ def roll_inheritance(destiny_knot=False):  # For determining which IVs to inheri
 
 # ------------------------------ Optimal breeding strategies
 
-def check_for_destiny_knot(male, female):  # Return True if knot would be optimal
+def check_for_destiny_knot(male, female, prioritize_uniques=True):  # Return True if knot would be optimal
     male_31s = male.count(31)
     female_31s = female.count(31)
     if male_31s == 6 or female_31s == 6:  # Knot always optimal if either parent is a 6IV
@@ -25,11 +25,16 @@ def check_for_destiny_knot(male, female):  # Return True if knot would be optima
     for i in range(6):
         if male[i] == 31 or female[i] == 31:
             total_unique_31s += 1
-    if total_unique_31s == total_overall_31s / 2:  # When unique 31s is half of overall, means all are overlaps
-        print(f'RETURN FALSE: {total_unique_31s} = {total_overall_31s} / 2')
-        return False
-    else:
-        return True
+    if prioritize_uniques:
+        if total_unique_31s == total_overall_31s / 2:  # When unique 31s is half of overall, means all are overlaps
+            return False
+        else:
+            return True
+    else:  # Prioritizing overall 31s
+        if total_overall_31s == 0 or total_overall_31s == 2 and total_unique_31s == 1:  # 0IV/0IV, 1IV/1IV same pos
+            return False
+        else:
+            return True
 
 
 # ------------------------------ Apply IVs
