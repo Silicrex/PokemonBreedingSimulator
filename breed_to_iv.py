@@ -4,12 +4,12 @@ from helper_functions import *
 # ---------- SETTINGS
 target_31s = 6  # AT LEAST how many 31 IVs is the goal? 6 = 6IV, must be between 0-6.
 do_replacements = True  # Replace progenitors as progress is made True/False
-destiny_knot_setting = None  # [True = always use] [False = never use] [None = use optimally]
+destiny_knot_setting = None  # [None = use optimally] [True = always use] [False = never use]
 male_chance = 0.5  # Chance for offspring to be male
 must_be_male = False  # Is the goal a male 6IV offspring instead of any 6IV offspring?
 runs = 10000  # How many trials to use to find an average
 seed = None  # None or seed
-interactive = True  # Pause after each breed, print detailed info (press enter or send any input to continue)
+interactive = False  # Pause after each breed, print detailed info (press enter or send any input to continue)
 
 if seed is not None:
     random.seed(seed)
