@@ -34,7 +34,10 @@ In some circumstances, a mathematical formula is used to calculate the real chan
 * **all_destiny_knot_scenarios.py** — Goes through every possible starting condition of breeding and tests for the average amount of tries to make progress from that position, both with and without using a Destiny Knot. (See when using a Destiny Knot is more efficient.)
 * **all_destiny_knot_scenarios_visualizer.py** — Visualizes all of the possible starting conditions mentioned above.
 * **unique_vs_overall_ivs.py** — Compares the efficiency of prioritizing the number of unique 31s in the pool versus overall 31s in the pool.
-* **roll_31.py** — Finds chance to roll at least one 31 given a certain amount of rolled stats.
+* **roll_new_31.py** — Finds chance to roll at least one 31 given a certain amount of rolled stats.
+* **random_31s.py** — Calculate chance to randomly roll n 31s.
+*  **fixed_iv_roll.py** — Given three guaranteed 31s, what's the chance they're the exact three stats you wanted?
+* **inherit_specific_stats.py** — What is the chance an offspring will inherit n number of specific stats from the pool?
  
 * **breed_to_any_iv_progress.py** is for seeing how many tries it takes to get an offspring that has more max-value IVs than the parent of the corresponding gender. Will run tests for both with and without a Destiny Knot, then compare.  
 * **breed_to_any_optimal_progress.py** is for seeing how many tries it takes to get an offspring that has a better IV pool than the parent of the corresponding gender, using the 'optimized' selection process (prioritize unique 31s instead of overall 31s). Will run tests for both with and without a Destiny Knot, then compare.
@@ -48,6 +51,7 @@ In some circumstances, a mathematical formula is used to calculate the real chan
 |4|1/1048576 (0.0001%)|
 |5|1/33554432 (0.000003%)|
 |6|1/1073741824 (0.000000093%)|
+Rounded; formula is `(1/32)^n`
 ### Chance to inherit specific stat:
 |# of specific stats | w/ Destiny Knot  | Regular|
 |:---:|:---:|:---:|

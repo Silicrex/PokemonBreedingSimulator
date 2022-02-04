@@ -64,8 +64,8 @@ for _ in range(runs):
     all_tries += tries
 gender_text = ' Male' if must_be_male else ''
 base_overlaps = 0  # How many overlaps the original pair had
-for i in range(6):
-    if male_base[i] == 31 and female_base[i] == 31:
+for male_iv, female_iv in zip(male_base, female_base):
+    if male_iv == female_iv == 31:
         base_overlaps += 1
 overlaps_text = f"{base_overlaps} overlaps" if base_overlaps > 1 else f"{base_overlaps} overlap"
 print(f'{male_base.count(31)}IV Male + {female_base.count(31)}IV Female ({overlaps_text}) TO '
