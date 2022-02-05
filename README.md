@@ -7,7 +7,6 @@
 4. [What are the goals?](#what-are-the-goals)
 5. [What does each file do?](#what-does-each-file-do)
 6. [Conclusions](#conclusions)  
-
     6a. [Chance to roll n 31s without inheritance](#chance-to-roll-n-31s-without-inheritance)  
     6b. [Chance to inherit specific stat](#chance-to-inherit-specific-stat)  
     6c. [Unique IVs vs Overall IVs](#unique-ivs-vs-overall-ivs)  
@@ -99,7 +98,7 @@ It's no contest, unique IVs are worth much more than overall IVs. It makes an ex
 * **5IV** [31, 31, 31, 31, 31, 0] + **5IV** [31, 31, 31, 31, 31, 0] **(5 unique IVs):** ~190 average tries for 6IV
 * **5IV** [31, 31, 31, 31, 31, 0] + **1IV** [0, 0, 0, 0, 0, 31] **(6 unique IVs):** ~108 average tries for 6IV
 ### When a Destiny Knot is optimal
-\- It is not always optimal to use a Destiny Knot. You don't want a low mutation rate when the current IV pool is lacking crucial components.
+\- It is not always optimal to use a Destiny Knot. You don't want a low mutation rate when the current IV pool is lacking crucial components.  
 \- It slightly depends on your breeding approach (between Unique IVs focus vs Overall IVs focus).
 * If you are trying to optimally breed to 6IV with Unique IVs focus: DO NOT USE A DESTINY KNOT IF **neither parent is a 6IV and total_unique_31s == total_overall_31s / 2**. This represents the situation where the IV pool doesn't have all 6 unique IVs and all 31s are on overlaps *for example: [31, 31, 31, 0, 0, 0] and [31, 31, 31, 0, 0, 0]  is **missing unique IVs and all 31s are overlaps**.*  As portrayed in the section above, it is literally better to have a 1IV that gives you a new unique IV than a 5IV which only has overlaps with the other parent. Using a Destiny Knot is optimal in all other scenarios.
 * If you're breeding with an Overall IVs focus, there are only two scenarios to not use a Destiny Knot in: 0IV + 0IV and 1IV + 1IV (1 overlap). 2IV + 2IV (2 overlaps) is close to even efficiency between knot or no knot, but it leans towards using the knot (again, to clarify, only with an Overall IVs focus, which is less efficient for reaching 6IV).
