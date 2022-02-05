@@ -5,7 +5,7 @@ target_31s = 5  # How many 31 IV's is the target? 6 = 6IV, must be between 0-6
 male_chance = 0.5
 runs = 1000
 interactive = False
-seed = 123  # None or seed. Used for running the comparisons on the same seed.
+seed = random.random()  # None or seed. Used for running the comparisons on the same seed.
 # ^ Use random.random() for same seed between unique/overall focus but random seed between runs of the program
 
 total_tries_unique_focus = 0
@@ -67,4 +67,3 @@ for iteration in range(2):  # One iteration for unique IVs priority, one for ove
             total_tries_overall_focus += tries
 print(f'Average tries for {target_31s}IV prioritizing unique IVs: {total_tries_unique_focus/runs}')
 print(f'Average tries for {target_31s}IV prioritizing overall IVs: {total_tries_overall_focus / runs}')
-

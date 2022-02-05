@@ -4,7 +4,9 @@ from helper_functions import *
 prioritize_uniques = True  # Care more about progress towards 6IV pool than current IV count
 male_chance = 0.5
 runs = 1000
-seed = 123  # None or seed. If seed given, will do both tests in each iteration using the same seed
+seed = None  # None or seed. If seed given, will do both tests in each iteration using the same seed.
+# Use random.random() for seed if you want both with knot and without knot runs to use same seed, but get
+# random seed between different runs of the script.
 for male_31_ivs in range(7):  # Nested loop to get 0IV-0IV, 0IV-1IV, 0IV-2IV, etc without repeats (2IV-3IV == 3IV-2IV)
     for female_31_ivs in range(male_31_ivs, 7):
         male = [0] * 6  # Start with 0IV

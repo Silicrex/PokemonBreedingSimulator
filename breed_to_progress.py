@@ -4,7 +4,7 @@ from helper_functions import *
 male_chance = 0.5
 runs = 1000
 interactive = False
-seed = 1337  # None or seed. Used for running the comparisons on the same seed.
+seed = random.random()  # None or seed. Used for running the comparisons on the same seed.
 # ^ Use random.random() for same seed between unique/overall focus but random seed between runs of the program
 
 male = [31, 31, 31, 0, 0, 0]

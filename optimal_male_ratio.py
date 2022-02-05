@@ -5,12 +5,12 @@ from helper_functions import *
 # ---------- SETTINGS
 target_ivs = 6  # 1-6, but it's pretty much a flat line unless you use 6
 must_be_male = True  # Does the offspring have to be male?
-runs = 10000
+runs = 5000
 # Following settings are for what range of male ratios to use. 50-60 would be 50, 51, 52... 60
-start_range = 40  # Inclusive range
-end_range = 90  # Inclusive range
+start_range = 65  # Inclusive range
+end_range = 95  # Inclusive range
 seed = None  # None = random, or can specify speed
-# pylab.ylim(0, 200)  # BE CAREFUL ABOUT SCALE IF YOU ARE CHANGING TARGET_IVS TO ANYTHING LESS THAN 6
+# pylab.ylim(50, 120)  # BE CAREFUL ABOUT SCALE IF YOU ARE CHANGING TARGET_IVS TO ANYTHING LESS THAN 6
 
 if seed is not None:
     random.seed(seed)
