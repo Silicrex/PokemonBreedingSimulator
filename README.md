@@ -122,19 +122,19 @@ Scenarios where **no knot** wins (optimal Unique-focus breeding):
 ### Offspring gender ratio
 * Gender ratio mostly comes in concerning egg group propagation. This is because you need male 6IVs to propagate IVs to different species (the female parent determine the species, so you can't use their IVs across different species/egg groups).
 * In terms of just 6IV breeding, no IV propagation considered, gender ratio should be as close to 50-50 as possible. See the below graph on the relationship between chance for a male offspring and average tries to get a 6IV offspring (specific simulation was starting from two 0IVs, optimal settings but no power items).
-**Note: please mind the axis labels. These graphs do not start with y at 0.**
-![For just 6IVs, 50% is best](https://i.imgur.com/nM0EQc3.png)
-* If you're trying to breed a 6IV male (same simulation as above but offspring must be male; careful, first impression of this is very misleading, the scale being thrown off so hard by low male chance almost makes the rest of the graph look flat; see further graphs; **interval is 5-95% chance for male**):
+**Note: please mind the axis labels. These graphs do not start with y at 0.**  
+![For just 6IVs, 50% is best](https://i.imgur.com/nM0EQc3.png)  
+* If you're trying to breed a 6IV male (same simulation as above but offspring must be male; careful, first impression of this is very misleading, the scale being thrown off so hard by low male chance almost makes the rest of the graph look flat; see further graphs; **interval is 5-95% chance for male**):  
 ![5-95% male ratio interval](https://i.imgur.com/UuA1uUH.png)  
-Here is a closer-up (**interval of 40-90% male ratio**):
+Here is a closer-up (**interval of 40-90% male ratio**):  
 ![40-90% male ratio interval](https://i.imgur.com/8wzMCOh.png)  
 50% is definitely not the optimal point. The spiking is from smaller scale (would smoothen out with higher sample size too). Starting from scratch, around a 72% chance for a male offspring is the most efficient. Practically speaking, the most significant number concerning optimal gender ratios is for when you already have a 6IV male and want to propagate it to other egg groups.
-Here is the graph for starting with a 6IV male and 0IV female (offspring must be a male 6IV; **45-90% male ratio interval**):
+Here is the graph for starting with a 6IV male and 0IV female (offspring must be a male 6IV; **45-90% male ratio interval**):  
 ![45-90% male ratio interval, start with 6IV male](https://i.imgur.com/SqCNw6T.png)  
 Our optimal number is around 77% chance for a male offspring. Here is the same graph with a larger y-axis interval for reference  
 ![45-90% male ratio interval, start with 6IV male](https://i.imgur.com/oKTLelN.png)  
 In conclusion: when you're going for male 6IVs to propagate IVs, higher male ratios are noticeably more efficient than 50%. You really want to avoid anything below 50%. There is a sweet spot (around 70-85% male ratio), and efficiency quickly drops off when leaving that range in either direction. Starter Pokemon, which have 87.5% male ratios, are more efficient than normal 50-50 species.
-The following graph illustrates the drop-off in the other direction, towards a 100% male ratio (where you don't get female progenitor replaces anymore)
+The following graph illustrates the drop-off in the other direction, towards a 100% male ratio (where you don't get female progenitor replaces anymore)  
 ![65-95% male ratio interval](https://i.imgur.com/TZUIWTy.png)
 ### Egg group propagation: the how and why
 
