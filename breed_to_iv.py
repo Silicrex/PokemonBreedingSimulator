@@ -5,18 +5,18 @@ from helper_functions import *
 target_31s = 6  # AT LEAST how many 31 IVs is the goal? 6 = 6IV, must be between 0-6.
 do_replacements = True  # Replace progenitors as progress is made True/False
 destiny_knot_setting = None  # [None = use optimally] [True = always use] [False = never use]
-male_chance = 0.5  # Chance for offspring to be male
 must_be_male = False  # Is the goal a male 6IV offspring instead of any 6IV offspring?
+male_chance = 0.5  # Chance for offspring to be male
 runs = 10000  # How many trials to use to find an average
-seed = None  # None or seed
+seed = None  # None (random) or seed
 interactive = False  # Pause after each breed, print detailed info (press enter or send any input to continue)
+
+# ---------- Starting progenitors
+male_base = [31, 31, 31, 31, 31, 31]
+female_base = [0, 0, 0, 0, 0, 0]
 
 if seed is not None:
     random.seed(seed)
-
-# Starting progenitors
-male_base = [0, 0, 0, 0, 0, 0]
-female_base = [0, 0, 0, 0, 0, 0]
 
 all_tries = 0  # Total tries to reach goal from each run, averaged at the end
 for _ in range(runs):
@@ -31,7 +31,7 @@ for _ in range(runs):
         if offspring.count(31) >= target_31s:
             if not must_be_male:
                 break
-            if must_be_male and offspring_gender == 'male':
+            elif offspring_gender == 'male':
                 break
         tries += 1
         if destiny_knot_setting is None:  # Do optimally
