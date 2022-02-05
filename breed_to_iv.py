@@ -1,14 +1,16 @@
-import random
 from helper_functions import *
 
 # ---------- SETTINGS
 target_31s = 6  # AT LEAST how many 31 IVs is the goal? 6 = 6IV, must be between 0-6.
 do_replacements = True  # Replace progenitors as progress is made True/False
 destiny_knot_setting = None  # [None = use optimally] [True = always use] [False = never use]
+power_item_setting = True  # False = don't use. True = automatically use automatically. Or...
+# Can manually provide power item data: needs to be a dict in this format {'slot': int, 'parent': string (gender)}
+# For example, {'slot': 0, 'parent': 'male'}
 must_be_male = False  # Is the goal a male 6IV offspring instead of any 6IV offspring?
 male_chance = 0.5  # Chance for offspring to be male
 runs = 10000  # How many trials to use to find an average
-seed = None  # None (random) or seed
+seed = 123  # None (random) or seed
 interactive = False  # Pause after each breed, print detailed info (press enter or send any input to continue)
 
 # ---------- Starting progenitors
@@ -38,12 +40,18 @@ for _ in range(runs):
             destiny_knot = check_for_destiny_knot(male, female)
         else:
             destiny_knot = destiny_knot_setting  # Bool
-        iv_slots = roll_inheritance(destiny_knot)
+        power_item_data = None
+        if power_item_setting is True:
+            power_item_data = check_for_power_item(male, female)
+        elif isinstance(power_item_setting, dict):
+            power_item_data = power_item_setting.copy()
+        iv_slots = roll_inheritance(destiny_knot, power_item_data)
         if interactive:
             print(f'{male=} ({male.count(31)}IV)')
             print(f'{female=} ({female.count(31)}IV)')
+            print(f'{power_item_data=}')
             print(f'Inherited IV positions: {iv_slots}')
-        offspring = generate_offspring(male, female, iv_slots, interactive)
+        offspring = generate_offspring(male, female, iv_slots, power_item_data, interactive)
         offspring_31s = offspring.count(31)
         offspring_gender = roll_gender(male_chance)
         if offspring_gender == 'male':

@@ -32,7 +32,7 @@ for iteration in range(2):  # One iteration for unique IVs priority, one for ove
                 print(f'{male=}')
                 print(f'{female=}')
                 print(f'Knot ivs: {iv_slots}')
-            offspring = generate_offspring(male, female, iv_slots, interactive)
+            offspring = generate_offspring(male, female, iv_slots, interactive=interactive)
             offspring_31s = offspring.count(31)
             if roll_gender(male_chance) == 'male':  # Gender roll
                 offspring_gender = 'male'

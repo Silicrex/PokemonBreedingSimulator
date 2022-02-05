@@ -30,7 +30,7 @@ for iteration in range(2):  # Do a run with destiny knot, then run without
                 iv_slots = roll_inheritance()
             if interactive:
                 print(f'Inherited IV positions: {iv_slots}')
-            offspring = generate_offspring(male, female, iv_slots, interactive)
+            offspring = generate_offspring(male, female, iv_slots, interactive=interactive)
             if roll_gender(male_chance) == 'male':  # Gender roll
                 if interactive:
                     print(f'Offspring #{tries} = {offspring} (Male {offspring.count(31)}IV)')
