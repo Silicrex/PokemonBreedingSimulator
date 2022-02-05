@@ -1,7 +1,7 @@
 from helper_functions import *
 
 # ---------- SETTINGS
-prioritize_uniques = False  # Care more about progress towards 6IV pool than current IV count
+prioritize_uniques = True  # Care more about progress towards 6IV pool than current IV count
 male_chance = 0.5
 runs = 1000
 seed = 123  # None or seed. If seed given, will do both tests in each iteration using the same seed

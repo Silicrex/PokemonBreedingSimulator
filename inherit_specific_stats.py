@@ -1,9 +1,9 @@
 from helper_functions import *
 runs = 100000
 
-specific_stats = 1  # Chance of how many specific stats being inherited?
-# Range of 1 through number of IVs inherited (3 or 5)
-destiny_knot = False  # True or False toggle
+# Chance of how many specific stats being inherited?
+specific_stats = 5  # Range of 1 through number of IVs inherited (3 or 5)
+destiny_knot = True  # True or False toggle
 
 stats_included = 0  # Number of times successful
 for _ in range(runs):

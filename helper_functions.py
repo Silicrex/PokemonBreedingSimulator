@@ -1,20 +1,6 @@
 import random
 
 
-# ------------------------------ IV slot inheritance
-
-def roll_inheritance(destiny_knot=False):  # For determining which IVs to inherit, numbers are slot numbers
-    iv_slots = [0, 1, 2, 3, 4, 5]
-    if destiny_knot:  # Remove 1
-        iv_slots.remove(random.choice(iv_slots))
-    else:  # Remove 3
-        for _ in range(3):
-            iv_slots.remove(random.choice(iv_slots))
-    return iv_slots
-
-
-# ------------------------------ Optimal breeding strategies
-
 def check_for_destiny_knot(male, female, prioritize_uniques=True):  # Return True if knot would be optimal
     male_31s = male.count(31)
     female_31s = female.count(31)
@@ -37,7 +23,15 @@ def check_for_destiny_knot(male, female, prioritize_uniques=True):  # Return Tru
             return True
 
 
-# ------------------------------ Apply IVs
+def roll_inheritance(destiny_knot=False):  # For determining which IVs to inherit, numbers are slot numbers
+    iv_slots = [0, 1, 2, 3, 4, 5]
+    if destiny_knot:  # Remove 1
+        iv_slots.remove(random.choice(iv_slots))
+    else:  # Remove 3
+        for _ in range(3):
+            iv_slots.remove(random.choice(iv_slots))
+    return iv_slots
+
 
 def generate_offspring(male, female, iv_slots, interactive=False):
     offspring = [0, 0, 0, 0, 0, 0]

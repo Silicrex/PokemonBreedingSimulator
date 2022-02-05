@@ -1,6 +1,8 @@
 import random
 
 # ---------- SETTINGS
+# What is the chance of rolling a new 31 when rolling this many stats?
+# For ex, 6 slots = chance to have at least one 31 on a wild Pokemon (rolls all 6 slots)
 available_slots = 6  # How many slots are rolling? 1-6
 runs = 10000
 
@@ -8,7 +10,7 @@ if available_slots == 0:
     print('0% chance')
 
 total_tries = 0
-for _ in range(runs):  # What is the chance of
+for _ in range(runs):
     no_31s = True
     while no_31s:
         total_tries += 1
