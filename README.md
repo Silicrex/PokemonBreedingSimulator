@@ -6,15 +6,16 @@
 3. [What are the common terms/concepts of this project?](#what-are-the-common-terms-and-concepts-of-this-project)
 4. [What are the goals?](#what-are-the-goals)
 5. [What does each file do?](#what-does-each-file-do)
-6. [Conclusions](#conclusions)
-    6a. [Chance to roll n 31s without inheritance](#chance-to-roll-n-31s-without-inheritance)
-	6b. [Chance to inherit specific stat](#chance-to-inherit-specific-stat)
-	6c. [Unique IVs vs Overall IVs](#unique-ivs-vs-overall-ivs)
-	6d. [When a Destiny Knot is optimal](#when-a-destiny-knot-is-optimal)
-	6e. [When progenitor replacements are optimal](#when-progenitor-replacements-are-optimal)
-	6f. [Power items vs Everstone](#power-items-vs-everstone)
-	6g. [Offspring gender ratio [Graphs]](#offspring-gender-ratio)
-	6h. [Egg group propagation: the how and why](#egg-group-propagation-the-how-and-why)
+6. [Conclusions](#conclusions)  
+
+    6a. [Chance to roll n 31s without inheritance](#chance-to-roll-n-31s-without-inheritance)  
+    6b. [Chance to inherit specific stat](#chance-to-inherit-specific-stat)  
+    6c. [Unique IVs vs Overall IVs](#unique-ivs-vs-overall-ivs)  
+    6d. [When a Destiny Knot is optimal](#when-a-destiny-knot-is-optimal)  
+    6e. [When progenitor replacements are optimal](#when-progenitor-replacements-are-optimal)  
+    6f. [Power items vs Everstone](#power-items-vs-everstone)  
+    6g. [Offspring gender ratio [Graphs]](#offspring-gender-ratio)  
+    6h. [Egg group propagation: the how and why](#egg-group-propagation-the-how-and-why)
 7. [Misc comments](#misc-comments)
 8. [Disclaimer](#disclaimer)
 ## What is this? 
@@ -78,7 +79,7 @@ In some circumstances, a mathematical formula is used to calculate the real chan
 |3|1/32768 (0.003%)|
 |4|1/1048576 (0.0001%)|
 |5|1/33554432 (0.000003%)|
-|6|1/1073741824 (0.000000093%)|
+|6|1/1073741824 (0.000000093%)|  
 Rounded percentages; formula is `(1/32)^n`
 ### Chance to inherit specific stat
 |# of specific stats | w/ Destiny Knot  | Regular|
@@ -87,7 +88,7 @@ Rounded percentages; formula is `(1/32)^n`
 |2|4/6 (66%)|1/5 (20%)|
 |3|3/6 (50%)|1/20 (5%)|
 |4|2/6 (33%)|N/A|
-|5|1/6 (16%)|N/A|
+|5|1/6 (16%)|N/A|  
 P.S. Some Pokemon are fixed to have at least three 31s (legendaries, revived fossils). The chance for their fixed IVs to be the three particular ones you want is the same as 3 specific stats with no knot (1/20).
 ### Unique IVs vs Overall IVs
 It's no contest, unique IVs are worth much more than overall IVs. It makes an extremely big difference to focus on adding new unique 31s into the IV pool instead of the overall IV number. Example:
@@ -120,14 +121,14 @@ Scenarios where **no knot** wins (optimal Unique-focus breeding):
 **Note: please mind the axis labels. These graphs do not start with y at 0.**
 ![For just 6IVs, 50% is best](https://i.imgur.com/nM0EQc3.png)
 * If you're trying to breed a 6IV male (same simulation as above but offspring must be male; careful, first impression of this is very misleading, the scale being thrown off so hard by low male chance almost makes the rest of the graph look flat; see further graphs; **interval is 5-95% chance for male**):
-![5-95% male ratio interval](https://i.imgur.com/UuA1uUH.png)
+![5-95% male ratio interval](https://i.imgur.com/UuA1uUH.png)  
 Here is a closer-up (**interval of 40-90% male ratio**):
-![40-90% male ratio interval](https://i.imgur.com/8wzMCOh.png)
+![40-90% male ratio interval](https://i.imgur.com/8wzMCOh.png)  
 50% is definitely not the optimal point. The spiking is from smaller scale (would smoothen out with higher sample size too). Starting from scratch, around a 72% chance for a male offspring is the most efficient. Practically speaking, the most significant number concerning optimal gender ratios is for when you already have a 6IV male and want to propagate it to other egg groups.
 Here is the graph for starting with a 6IV male and 0IV female (offspring must be a male 6IV; **45-90% male ratio interval**):
-![45-90% male ratio interval, start with 6IV male](https://i.imgur.com/SqCNw6T.png)
+![45-90% male ratio interval, start with 6IV male](https://i.imgur.com/SqCNw6T.png)  
 Our optimal number is around 77% chance for a male offspring. Here is the same graph with a larger y-axis interval for reference
-![45-90% male ratio interval, start with 6IV male](https://i.imgur.com/oKTLelN.png)
+![45-90% male ratio interval, start with 6IV male](https://i.imgur.com/oKTLelN.png)  
 In conclusion: when you're going for male 6IVs to propagate IVs, higher male ratios are noticeably more efficient than 50%. You really want to avoid anything below 50%. There is a sweet spot (around 70-85% male ratio), and efficiency quickly drops off when leaving that range in either direction. Starter Pokemon, which have 87.5% male ratios, are more efficient than normal 50-50 species.
 The following graph illustrates the drop-off in the other direction, towards a 100% male ratio (where you don't get female progenitor replaces anymore)
 ![65-95% male ratio interval](https://i.imgur.com/TZUIWTy.png)
