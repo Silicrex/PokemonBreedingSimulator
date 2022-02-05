@@ -79,7 +79,9 @@ In some circumstances, a mathematical formula is used to calculate the real chan
 |  3  | 1/32768 (0.003%)            |
 |  4  | 1/1048576 (0.0001%)         |
 |  5  | 1/33554432 (0.000003%)      |
-|  6  | 1/1073741824 (0.000000093%) |  
+|  6  | 1/1073741824 (0.000000093%) |
+
+
 Rounded percentages; formula is `(1/32)^n`
 ### Chance to inherit specific stat
 | # of specific stats | w/ Destiny Knot |  Regular  |
@@ -89,6 +91,8 @@ Rounded percentages; formula is `(1/32)^n`
 |          3          |    3/6 (50%)    | 1/20 (5%) |
 |          4          |    2/6 (33%)    |    N/A    |
 |          5          |    1/6 (16%)    |    N/A    |  
+
+
 P.S. Some Pokemon are fixed to have at least three 31s (legendaries, revived fossils). The chance for their fixed IVs to be the three particular ones you want is the same as 3 specific stats with no knot (1/20).
 ### Unique IVs vs Overall IVs
 It's no contest, unique IVs are worth much more than overall IVs. It makes an extremely big difference to focus on adding new unique 31s into the IV pool instead of the overall IV number. Example:
