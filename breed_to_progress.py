@@ -34,14 +34,14 @@ for iteration in range(2):  # Do a run with destiny knot, then run without
             if roll_gender(male_chance) == 'male':  # Gender roll
                 if interactive:
                     print(f'Offspring #{tries} = {offspring} (Male {offspring.count(31)}IV)')
-                if check_for_replace(male, female, offspring, interactive):
+                if check_for_replace(male, female, offspring, interactive=interactive):
                     if interactive:
                         print('>>> Beats male')
                     break
             else:
                 if interactive:
                     print(f'Offspring #{tries} = {offspring} (Male {offspring.count(31)}IV)')
-                if check_for_replace(female, male, offspring, interactive):
+                if check_for_replace(female, male, offspring, interactive=interactive):
                     if interactive:
                         print('>>> Beats female')
                     break

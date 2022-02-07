@@ -1,13 +1,13 @@
 from helper_functions import *
 
 # ---------- SETTINGS
-target_31s = 5  # AT LEAST how many 31 IVs is the goal? 6 = 6IV, must be between 0-6.
+number_of_specific_slots = 2
 do_replacements = True  # Replace progenitors as progress is made True/False
 destiny_knot_setting = None  # [None = use optimally] [True = always use] [False = never use]
 power_item_setting = True  # False = don't use. True = automatically use automatically. Or...
 # Can manually provide power item data: needs to be a dict in this format {'slot': int, 'parent': string (gender)}
 # For example, {'slot': 0, 'parent': 'male'}
-must_be_male = False  # Is the goal a male 6IV offspring instead of any 6IV offspring?
+must_be_male = True  # Is the goal a male 6IV offspring instead of any 6IV offspring?
 male_chance = 0.5  # Chance for offspring to be male
 runs = 1000  # How many trials to use to find an average
 seed = 123  # None (random) or seed
@@ -16,10 +16,12 @@ interactive = False  # Pause after each breed, print detailed info (press enter 
 # ---------- Starting progenitors
 # For easy copy/paste: [31, 31, 31, 31, 31, 31] [0, 0, 0, 0, 0, 0]
 male_base = [31, 0, 0, 0, 0, 0]
-female_base = [0, 0, 31, 31, 0, 0]
+female_base = [0, 31, 0, 0, 0, 0]
 
 if seed is not None:
     random.seed(seed)
+
+list_of_slots = list(range(number_of_specific_slots))
 
 all_tries = 0  # Total tries to reach goal from each run, averaged at the end
 count2 = 0
@@ -32,10 +34,16 @@ for _ in range(runs):
 
     tries = 0  # Tries for current run
     while True:
-        if offspring.count(31) >= target_31s:
-            if not must_be_male:
-                break
-            elif offspring_gender == 'male':
+        if offspring.count(31) >= number_of_specific_slots:
+            gender_check = True  # Flag for success condition
+            slot_check = True  # Flag success condition
+            if must_be_male and offspring_gender != 'male':
+                gender_check = False
+            for i in list_of_slots:
+                if offspring[i] != 31:
+                    slot_check = False
+                    break  # Break out of check for slots, not main loop
+            if gender_check and slot_check:  # If all pass
                 break
         tries += 1
         if destiny_knot_setting is None:  # Do optimally
@@ -53,19 +61,28 @@ for _ in range(runs):
             print(f'{female=} ({female.count(31)}IV)')
             print(f'{power_item_data=}')
             print(f'Inherited IV positions: {iv_slots}')
+        old_slots = 0
+        for i in range(number_of_specific_slots):
+            if offspring[i] == 31:
+                old_slots += 1
         offspring = generate_offspring(male, female, iv_slots, power_item_data, interactive)
         offspring_31s = offspring.count(31)
         offspring_gender = roll_gender(male_chance)
-        if offspring_gender == 'male':
-            if do_replacements and check_for_replace(male, female, offspring, interactive=interactive):
-                if interactive:
-                    print('>>> Replace male')
-                male = offspring.copy()
-        else:
-            if do_replacements and check_for_replace(female, male, offspring, interactive=interactive):
-                if interactive:
-                    print('>>> Replace female')
-                female = offspring.copy()
+        new_slots = 0
+        for i in range(number_of_specific_slots):
+            if offspring[i] == 31:
+                new_slots += 1
+        if new_slots >= old_slots:
+            if offspring_gender == 'male':
+                if do_replacements and check_for_replace(male, female, offspring, interactive=interactive):
+                    if interactive:
+                        print('>>> Replace male')
+                    male = offspring.copy()
+            else:
+                if do_replacements and check_for_replace(female, male, offspring, interactive=interactive):
+                    if interactive:
+                        print('>>> Replace female')
+                    female = offspring.copy()
         if interactive:
             print(f'Offspring #{tries} = {offspring} ({offspring_gender.capitalize()} {offspring.count(31)}IV)')
             input()  # Just to pause; enter anything to continue
@@ -78,6 +95,16 @@ for male_iv, female_iv in zip(male_base, female_base):
     if male_iv == female_iv == 31:
         base_overlaps += 1
 overlaps_text = f"{base_overlaps} overlaps" if base_overlaps != 1 else f"{base_overlaps} overlap"
-print(f'{male_base.count(31)}IV Male + {female_base.count(31)}IV Female ({overlaps_text}) TO '
-      f'>= {target_31s}IV{gender_text}')
+male_slots = []
+female_slots = []
+for index, values in enumerate(zip(male_base, female_base)):
+    # values = tuple of (male IV, female IV)
+    if values[0] == 31:
+        male_slots.append(str(index))
+    if values[1] == 31:
+        female_slots.append(str(index))
+print(f'Male: {male_base.count(31)}IV [Slot {", ".join(male_slots)}]\n'
+      f'Female: {female_base.count(31)}IV Female [Slot {", ".join(female_slots)}]\n'
+      f'({overlaps_text})\n'
+      f'Goal: >= {number_of_specific_slots}IV{gender_text} [Slot {", ".join([str(x) for x in list_of_slots])}]')
 print(f'Average amount of tries: {all_tries/runs}')

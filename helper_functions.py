@@ -85,10 +85,17 @@ def roll_gender(male_chance):
         return 'female'
 
 
-def check_for_replace(same_gender, other_gender, offspring, interactive=False):
-    same_gender_ivs = same_gender.count(31)
-    other_gender_ivs = other_gender.count(31)
+def check_for_replace(same_gender, other_gender, offspring, prioritize_overalls=False, interactive=False):
+    same_gender_31s = same_gender.count(31)
+    other_gender_31s = other_gender.count(31)
     offspring_31s = offspring.count(31)
+
+    if prioritize_overalls:
+        if offspring_31s > same_gender_31s:
+            return True
+        else:
+            return False
+
     total_unique_31s = 0
     new_total_unique_31s = 0  # How many unique 31s would we have if we did a replacement?
     for i in range(6):
@@ -103,13 +110,13 @@ def check_for_replace(same_gender, other_gender, offspring, interactive=False):
         print(f'{total_unique_31s=}')
         if beats_unique_31s:
             print(f"Beats unique 31s! ({total_unique_31s} to {new_total_unique_31s})")
-            print(f"Overall 31s goes from {same_gender_ivs + other_gender_ivs} to {offspring_31s + other_gender_ivs}")
-        if offspring_31s > same_gender_ivs:
+            print(f"Overall 31s goes from {same_gender_31s + other_gender_31s} to {offspring_31s + other_gender_31s}")
+        if offspring_31s > same_gender_31s:
             if new_total_unique_31s >= total_unique_31s:
                 print('Offspring has more 31s and unique is at least as good')
             else:
                 print('Offspring has more 31s but unique would be lower')
-    if beats_unique_31s or offspring_31s > same_gender_ivs and new_total_unique_31s >= total_unique_31s:
+    if beats_unique_31s or offspring_31s > same_gender_31s and new_total_unique_31s >= total_unique_31s:
         return True
     else:
         return False

@@ -14,7 +14,7 @@
     6e. [When progenitor replacements are optimal](#when-progenitor-replacements-are-optimal)  
     6f. [Power items vs Everstone](#power-items-vs-everstone)  
     6g. [Offspring gender ratio [Graphs]](#offspring-gender-ratio)  
-    6h. [Egg group propagation: the how and why](#egg-group-propagation-the-how-and-why)
+    6h. [Egg group propagation: the how and why [Graphs]](#egg-group-propagation-the-how-and-why)  
 7. [Misc comments](#misc-comments)
 8. [Disclaimer](#disclaimer)
 ## What is this? 
@@ -135,7 +135,135 @@ Our optimal number is around 77% chance for a male offspring. Here is the same g
 In conclusion: when you're going for male 6IVs to propagate IVs, higher male ratios are noticeably more efficient than 50%. You really want to avoid anything below 50%. There is a sweet spot (around 70-85% male ratio), and efficiency quickly drops off when leaving that range in either direction. Starter Pokemon, which have 87.5% male ratios, are more efficient than normal 50-50 species.
 The following graph illustrates the drop-off in the other direction, towards a 100% male ratio (where you don't get female progenitor replaces anymore)  
 ![65-95% male ratio interval](https://i.imgur.com/TZUIWTy.png)
-### Egg group propagation: the how and why
+### Egg group propagation: the how and why  
+#### Do we have to start over from scratch each time we want to breed a new 6IV?  
+No! Barring genderless/"undiscovered" Pokemon, which can't regularly breed (will not be repeating this clarification, but it applies whenever egg groups are mentioned), once you have a 6IV male, you can propagate (spread) those IVs to all other Pokemon species! 
+#### Egg group interconnectedness
+A lot of Pokemon belong to **two** egg groups. This is the key point of propagating IVs not just to other species in the same egg group, but all other egg groups as well.  
+Below is a graph (generated using https://graphonline.ru/en/) illustrating all the connections using two-egg-group Pokemon in BDSP (there are significantly more connections with the later-added Pokemon).
+![Number = connection points](https://i.imgur.com/PzHGAC0.png)  
+For example, say you had three species: one in Flying and Dragon, one in Dragon and Monster, and one in Monster and Field. Each of these two-egg-group species contributes a link between each of their egg groups. Using mutual links, you can travel from one egg group to another even if there are no direct connections. In this case, you could use the Dragon + Monster as the intermediary between Flying and Field.  
+#### So, what's the strategy?
+The idea is to have a 6IV male for each egg group. That way, if you ever need to breed a 6IV, you can use the 6IV male you have in the corresponding egg group to easily work towards the 6IV you want. When you're at that point, breeding optimally (Destiny Knot, Power Items, selection strategy), it only takes about **4 breeds** to get to **5IV** (assuming normal gender ratio of 50-50). Including those 4 tries, it's around **36** breeds for a **6IV**!
+#### The optimal way of propagating IVs to other egg groups (BDSP)
+This section is for if you want to reach all of the egg groups as efficiently as possible. I will go into detail about the starting point and how to progress from there, as well as what factors come into play.
+
+The **factors**: 
+- **Amount of new egg group coverage per new species you obtain a 6IV male for**. The route should start with a duo-egg-group Pokemon (+2 coverage), and each new species you propagate to should add a new egg group coverage (+1). This means the route needs to be considerate of not requiring intermediary breeds of duo-egg-group species whose egg groups you already have coverage for. 
+- **Gender ratio**. Since we're specifically breeding for 6IV males so we can propagate the IVs to other species, this can make a notable difference.
+- **Egg cycles**. Egg cycles determine how quickly eggs catch. The lower the number, the better.
+- **Immediate-breedability of offspring**. Some species have offspring which need to be evolved before being breedable (for example, Lucario and Pikachu).
+
+The **route (BDSP)**:
+Again, there are several routes you could take which are equally optimal. This is an example of a route which minimizes the cost of the above factors as much as possible:  
+```
+MAGIKARP (UNLOCK DRAGON/WATER2)
+MAGIKARP -> SWABLU (UNLOCK FLYING)
+MAGIKARP -> CHARMANDER (UNLOCK MONSTER)
+SWABLU -> TOGEPI (UNLOCK FAIRY)
+TOGEPI -> MARILL (UNLOCK WATER 1)
+TOGEPI -> PACHIRISU (UNLOCK FIELD)
+TOGEPI -> SNORUNT (UNLOCK MINERAL)
+MARILL -> SURSKIT (UNLOCK BUG)
+MARILL -> LOTAD (UNLOCK GRASS)
+MARILL -> CORPHISH (UNLOCK WATER3)
+PACHIRISU -> SPINDA (UNLOCK HUMAN-LIKE)
+SPINDA -> RALTS (UNLOCK AMORPHOUS)
+```  
+![Example of an optimal route](https://i.imgur.com/Nz2AiYc.png)  
+(connections connect species which share an egg group)  
+- You start with +2 egg group coverage. Each new species gives you +1 (there are no unnecessary intermediaries to fill in connections). 
+- Each egg group's Pokemon has the lowest hatch time for its egg group (aside from when it's 2nd-fastest and the 1st-fastest was used for a different egg group connection already; ie Togepi is the fastest hatch for both Fairy and Flying, but Togepi is used for Fairy and Swablu (who is 2nd-fastest for Flying) is used for Flying).
+- Gender ratio was converted into terms of overall hatch time to be compared
+- Five things to note:  
+	1. Of course, this comes down to RNG. You could get lucky or unlucky. What using an optimal route means is *on average* it's the fastest, so it's the best you can do. Same goes for all figures mentioned on this page. There can very much be high variance on an individual level.  
+	2. Pokemon with a high male ratio (Togepi and Charmander are 87.5% male) are harder to start off, but are faster in the long-term (avoids the pain of rolling female 6IVs half the time).  
+	3. Togepi needs to be evolved to breed, and it's a friendship evo (will evolve the next time it levels up if the Friendship stat is at least a certain value). Prepare any friendship berries (the ones which lower EVs but raise friendship; Pomeg Berry, Kelpsy Berry, Qualot Berry, Hondew Berry, Grepa Berry, and/or Tamato Berry). It only takes a Soothe Bell (held item to have the Togepi hold which multiplies friendship gained) and ~8 (pending confirmation) of these berries to have enough to evolve (then you can just win a battle and the XP share will be enough to cause Togepi to level up and evolve). You only need to do this when making a replacement, so at worst 6 times (initial, 1IV, 2IV... 5IV). This does trade breeding expense for other expenses. Up to you which area you'd rather invest more time into.  
+	4. If you already have a certain 6IV you want which would replace a duo-egg-group slot's species but has higher hatch time, you may as well use that instead!
+	5. For your starting point, it may be easier to either mass-catch that Pokemon or Dittos (using PokeRadar) until you have a 31 in each stat slot (between different individual Pokemon). Since catching is so much faster than breeding, and you're only rolling for one 31, this is an easy way to kick-off.  
+#### Make your own route (BDSP)
+Below is a table (for BDSP) of all the duo-egg-group Pokemon, sorted by efficiency.  
+- Header is the egg group you're unlocking. 
+- Format is like [Egg cycles (lower = better); other details] Pokemon_species (Egg group you need to reach this)
+- Slash means the Pokemon separated make no difference
+- *For ex:* `[(17.6) 20, 87.5% Male] Treecko/Charmander (Monster)` under the Dragon group. Factoring male ratio, the egg cycle value is 17.6 (20 regularly). Both species have an 87.5% male rate. Using Treecko vs Charmander makes no difference. Monster is the egg group you need to have already to link here. Dragon is the egg group you unlock.
+- Gender ratio is handled like this: what is the percentage of tries more/less this gender ratio causes you to need? Apply that as a multiplier to the egg cycle value.
+```
+>>> Amorphous: 
+    [20] Shellos (Water1), Ralts (Human-Like)
+    [25] Castform (Fairy)
+>>> Bug:
+    [15] Surskit (Water1), Volbeat&Illumise (Human-Like)
+    [20] Skorupi (Water3), Paras (Grass), Trapinch (Dragon)
+>>> Dragon:
+    [5] Magikarp (Water2)
+    [(17.6) 20, 87.5% Male] Treecko/Charmander (Monster)
+    [20] Feebas/Horsea (Water1), Swablu (Flying), Seviper/Ekans (Field), Trapinch (Bug)
+    [40] Dratini (Water1), Gible (Monster)
+>>> Fairy:
+    [(8.8) 10, 87.5% Male, Friendship Evolution] Togetic (Flying)
+    [10] Marill (Water1), Pachirisu (Field)
+    [10, Friendship Evolution] Pikachu (Field)
+    [15] Shroomish (Grass)
+    [20] Snorunt (Mineral), Cherubi/Roselia/Hoppip (Grass), Mawile (Field)
+    [25] Castform (Amorphous)	
+    [(25.04) 15, 25% Male] Skitty (Field)
+    [(33.4) 20, 25% Male] Snubbull (Field)
+>>> Field:
+    [10] Pachirisu (Fairy)
+    [10, Friendship Evolution] Pikachu (Fairy)
+    [15] Bidoof (Water1), Spinda (Human-Like), Seedot (Grass)
+    [(17.6) 20, 87.5% Male] Piplup (Water1), Chimchar (Human-Like)
+    [20] Buizel/Spheal/Delibird/Wooper/Seel/Psyduck (Water1),
+         Whismur/Mareep/Rhyhorn/Nidoran (Monster),
+         Buneary (Human-Like), Farfetch'd (Flying), Mawile (Fairy), Seviper/Ekans (Dragon)
+    [(21.98) 25, 87.5% Male, Daytime Friendship Evolution] Lucario (Human-Like)
+    [(25.04) 15, 25% Male] Skitty (Fairy)
+    [(33.4)  20, 25% Male] Snubbull (Fairy)
+    [40] Wailmer (Water2)
+>>> Flying:
+    [(8.8) 10, 87.5% Male, Friendship Evolution] Togetic (Fairy)
+    [20] Wingull (Water1), Farfetch'd (Field), Swablu (Dragon)
+>>> Grass:
+    [15] Lotad (Water1), Seedot (Field), Shroomish (Fairy)
+    [(17.6) 20, 87.5% Male] Turtwig/Chikorita/Bulbasaur (Monster)
+    [20] Snover (Monster), Cacnea (Human-Like), Cherubi/Roselia/Hoppip (Fairy), Paras (Bug)
+    [25] Tropius (Monster)
+>>> Human-Like:
+    [15] Spinda (Field), Volbeat&Illumise (Bug)
+    [(17.6) 20, 87.5% Male] Chimchar (Field)
+    [20] Cacnea (Grass), Buneary (Field), Ralts (Amorphous)
+    [(21.98) 25, 87.5% Male, Daytime Friendship Evolution] Lucario (Field)
+>>> Mineral:
+    [20] Snorunt (Fairy)
+>>> Monster:
+    [(17.6) 20, 87.5% Male] Mudkip/Totodile/Squirtle (Water1),
+         Turtwig/Chikorita/Bulbasaur (Grass), Treecko/Charmander (Dragon)
+    [20] Slowbro (Water1), Snover (Grass), Whismur/Mareep/Rhyhorn/Nidoran (Field)
+    [25] Tropius (Grass)
+    [40] Lapras (Water1), Gible (Dragon)
+>>> Water 1:
+    [10] Marill (Fairy)
+    [15] Corphish (Water3), Lotad (Grass), Bidoof (Field), Surskit (Bug)
+    [(17.6) 20, 87.5% Male] Mudkip/Totodile/Squirtle (Monster), Piplup (Field)
+    [20] Remoraid (Water2), Slowbro (Monster), Wingull (Flying), 
+         Buizel/Spheal/Delibird/Wooper/Seel/Psyduck (Field), Feebas/Horsea (Dragon),
+         Shellos (Amorphous)
+    [(26.4) 30, 87.5% Male] Kabuto/Omanyte (Water3)
+    [(33.4) 20, 25% Male] Corsola (Water3)
+    [(35.2) 40] Relicanth (Water2)
+    [40] Lapras (Monster), Dratini (Dragon)
+>>> Water 2:
+    [5] Magikarp (Dragon)
+    [20] Remoraid (Water1)
+    [(35.2) 40] Relicanth (Water2)
+    [40] Wailmer (Field)
+>>> Water 3:
+    [15] Corphish (Water1)
+    [20] Skorupi (Bug)
+    [(26.4) 30, 87.5% Male] Kabuto/Omanyte (Water1)
+    [(33.4) 20, 25% Male] Corsola (Water1)
+```
 
 ### Misc comments
 * Getting to 5IV is very consistent, but 6IV gets more complicated, since the most IVs an offspring can inherit is five (using Destiny Knot). This means even with two 6IV parents, the best odds you can achieve are 1/32 for another 6IV offspring.  

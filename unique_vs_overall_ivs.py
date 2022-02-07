@@ -5,7 +5,7 @@ target_31s = 5  # How many 31 IV's is the target? 6 = 6IV, must be between 0-6
 male_chance = 0.5
 runs = 1000
 interactive = False
-seed = random.random()  # None or seed. Used for running the comparisons on the same seed.
+seed = 123  # None or seed. Used for running the comparisons on the same seed.
 # ^ Use random.random() for same seed between unique/overall focus but random seed between runs of the program
 
 total_tries_unique_focus = 0
@@ -37,24 +37,24 @@ for iteration in range(2):  # One iteration for unique IVs priority, one for ove
             if roll_gender(male_chance) == 'male':  # Gender roll
                 offspring_gender = 'male'
                 if iteration == 0:  # Unique IVs priority first
-                    if check_for_replace(male, female, offspring, interactive):
+                    if check_for_replace(male, female, offspring, interactive=interactive):
                         if interactive:
                             print('>>> Replace male')
                         male = offspring.copy()
                 else:  # Overall IVs priority
-                    if offspring.count(31) > male.count(31):
+                    if check_for_replace(male, female, offspring, prioritize_overalls=True, interactive=interactive):
                         if interactive:
                             print('Replace male')
                         male = offspring.copy()
             else:
                 offspring_gender = 'female'
                 if iteration == 0:  # Unique IVs priority first
-                    if check_for_replace(female, male, offspring, interactive):
+                    if check_for_replace(female, male, offspring, interactive=interactive):
                         if interactive:
                             print('>>> Replace female')
                         female = offspring.copy()
                 else:  # Overall IVs priority
-                    if offspring.count(31) > female.count(31):
+                    if check_for_replace(female, male, offspring, prioritize_overalls=True, interactive=interactive):
                         if interactive:
                             print('Replace female')
                         female = offspring.copy()
