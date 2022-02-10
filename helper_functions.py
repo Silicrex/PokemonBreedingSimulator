@@ -116,7 +116,29 @@ def check_for_replace(same_gender, other_gender, offspring, prioritize_overalls=
                 print('Offspring has more 31s and unique is at least as good')
             else:
                 print('Offspring has more 31s but unique would be lower')
-    if beats_unique_31s or offspring_31s > same_gender_31s and new_total_unique_31s >= total_unique_31s:
+    if beats_unique_31s or offspring_31s > same_gender_31s and new_total_unique_31s == total_unique_31s:
         return True
     else:
         return False
+
+
+def check_for_specific_positions_replace(same_gender, other_gender, offspring, specific_slots_num):
+    same_gender_31s = same_gender.count(31)
+    offspring_31s = offspring.count(31)
+
+    current_pos_covered = 0  # How many of the positions are currently in the pool (one parent or both)
+    new_pos_covered = 0  # How many would be in if we replaced?
+    for i in range(specific_slots_num):
+        if same_gender[i] == 31 or other_gender[i] == 31:
+            current_pos_covered += 1
+        if offspring[i] == 31 or other_gender[i] == 31:
+            new_pos_covered += 1
+    beats_pos_covered = new_pos_covered > current_pos_covered
+
+    if beats_pos_covered or offspring_31s > same_gender_31s and new_pos_covered == current_pos_covered:
+        return True
+    else:
+        return False
+
+
+

@@ -1,27 +1,27 @@
 from helper_functions import *
 
 # ---------- SETTINGS
-number_of_specific_slots = 2
+specific_slots_num = 6  # Going for how many specific slots?
 do_replacements = True  # Replace progenitors as progress is made True/False
 destiny_knot_setting = None  # [None = use optimally] [True = always use] [False = never use]
-power_item_setting = True  # False = don't use. True = automatically use automatically. Or...
+power_item_setting = True  # False = don't use. True = automatically use optimally. Or...
 # Can manually provide power item data: needs to be a dict in this format {'slot': int, 'parent': string (gender)}
 # For example, {'slot': 0, 'parent': 'male'}
 must_be_male = True  # Is the goal a male 6IV offspring instead of any 6IV offspring?
 male_chance = 0.5  # Chance for offspring to be male
-runs = 1000  # How many trials to use to find an average
-seed = 123  # None (random) or seed
+runs = 10000  # How many trials to use to find an average
+seed = None  # None (random) or seed
 interactive = False  # Pause after each breed, print detailed info (press enter or send any input to continue)
 
 # ---------- Starting progenitors
 # For easy copy/paste: [31, 31, 31, 31, 31, 31] [0, 0, 0, 0, 0, 0]
-male_base = [31, 0, 0, 0, 0, 0]
-female_base = [0, 31, 0, 0, 0, 0]
+male_base = [31, 31, 31, 31, 31, 31]
+female_base = [0, 0, 0, 0, 0, 0]
 
 if seed is not None:
     random.seed(seed)
 
-list_of_slots = list(range(number_of_specific_slots))
+list_of_slots = list(range(specific_slots_num))
 
 all_tries = 0  # Total tries to reach goal from each run, averaged at the end
 count2 = 0
@@ -34,7 +34,7 @@ for _ in range(runs):
 
     tries = 0  # Tries for current run
     while True:
-        if offspring.count(31) >= number_of_specific_slots:
+        if offspring.count(31) >= specific_slots_num:
             gender_check = True  # Flag for success condition
             slot_check = True  # Flag success condition
             if must_be_male and offspring_gender != 'male':
@@ -61,28 +61,19 @@ for _ in range(runs):
             print(f'{female=} ({female.count(31)}IV)')
             print(f'{power_item_data=}')
             print(f'Inherited IV positions: {iv_slots}')
-        old_slots = 0
-        for i in range(number_of_specific_slots):
-            if offspring[i] == 31:
-                old_slots += 1
         offspring = generate_offspring(male, female, iv_slots, power_item_data, interactive)
         offspring_31s = offspring.count(31)
         offspring_gender = roll_gender(male_chance)
-        new_slots = 0
-        for i in range(number_of_specific_slots):
-            if offspring[i] == 31:
-                new_slots += 1
-        if new_slots >= old_slots:
-            if offspring_gender == 'male':
-                if do_replacements and check_for_replace(male, female, offspring, interactive=interactive):
-                    if interactive:
-                        print('>>> Replace male')
-                    male = offspring.copy()
-            else:
-                if do_replacements and check_for_replace(female, male, offspring, interactive=interactive):
-                    if interactive:
-                        print('>>> Replace female')
-                    female = offspring.copy()
+        if offspring_gender == 'male':
+            if do_replacements and check_for_specific_positions_replace(male, female, offspring, specific_slots_num):
+                if interactive:
+                    print('>>> Replace male')
+                male = offspring.copy()
+        else:
+            if do_replacements and check_for_specific_positions_replace(female, male, offspring, specific_slots_num):
+                if interactive:
+                    print('>>> Replace female')
+                female = offspring.copy()
         if interactive:
             print(f'Offspring #{tries} = {offspring} ({offspring_gender.capitalize()} {offspring.count(31)}IV)')
             input()  # Just to pause; enter anything to continue
@@ -106,5 +97,5 @@ for index, values in enumerate(zip(male_base, female_base)):
 print(f'Male: {male_base.count(31)}IV [Slot {", ".join(male_slots)}]\n'
       f'Female: {female_base.count(31)}IV Female [Slot {", ".join(female_slots)}]\n'
       f'({overlaps_text})\n'
-      f'Goal: >= {number_of_specific_slots}IV{gender_text} [Slot {", ".join([str(x) for x in list_of_slots])}]')
+      f'Goal: >= {specific_slots_num}IV{gender_text} [Slot {", ".join([str(x) for x in list_of_slots])}]')
 print(f'Average amount of tries: {all_tries/runs}')

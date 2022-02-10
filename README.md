@@ -15,6 +15,7 @@
     6f. [Power items vs Everstone](#power-items-vs-everstone)  
     6g. [Offspring gender ratio [Graphs]](#offspring-gender-ratio)  
     6h. [Egg group propagation: the how and why [Graphs]](#egg-group-propagation-the-how-and-why)  
+    6i. [How big is the difference, really?](#how-big-is-the-difference-really)
 7. [Misc comments](#misc-comments)
 8. [Disclaimer](#disclaimer)
 ## What is this? 
@@ -43,7 +44,7 @@ Example of a settings panel and snippet of output (regular settings for **breed_
 * **Roll** = Outcome of a randomized event. As a verb: to receive something from a randomized event. Probably comes from the idea of rolling dice?  
 * **Held Item** = Pokemon can hold an item (no more than one). Certain held items will affect the breeding process.  
 * **Destiny Knot** = A held item that causes the offspring to **inherit five IVs from the parents**, as opposed to the normal three. Breeding with **Destiny Knot = less mutation**. This could be good or bad depending on what is in the current "gene pool." Which parent holds this makes no difference, and having each parent hold one is no different than only having one.  
-* **Power Item** = There is a power item (a held item) corresponding to each of the six stats. When a parent is holding a power item, their **IV corresponding to the stat** of the power item is **guaranteed to be inherited by the offspring**. If you combine this with the Destiny Knot (one parent holds the power item, the other holds a Destiny Knot), the guaranteed IV from the power item will take up one of the five inherited IVs from the Destiny Knot. *For example, say you had a male with a 31 Attack IV holding the attack power item, and a female holding a Destiny Knot. The offspring will have a 31 Attack IV, four other IVs inherited from the parents, and then one random IV.*  
+* **Power Item** = There is a power item (a held item) corresponding to each of the six stats. When a parent is holding a power item, their **IV corresponding to the stat** of the power item is **guaranteed to be inherited by the offspring**. Trying to use a Power Item on both parents does NOT apply both effects, it will just randomly choose one to use, and the other will do nothing. If you combine this with the Destiny Knot (one parent holds the power item, the other holds a Destiny Knot), the guaranteed IV from the power item will take up one of the five inherited IVs from the Destiny Knot. *For example, say you had a male with a 31 Attack IV holding the attack power item, and a female holding a Destiny Knot. The offspring will have a 31 Attack IV, four other IVs inherited from the parents, and then one random IV.*  
 * **Nature** = Pokemon have another potentially-hereditary value: Nature. There are 25 Natures. Each Nature corresponds to increasing one stat by 10% and decreasing another by 10%. The only exception is the HP stat, which is never affected by Nature. Natures which increase and reduce the same stat are called "Neutral Natures," since they don't do anything. Nature is only hereditary when a parent is holding a held item called an **Everstone**.  
 * **Everstone** = Held item which guarantees that the parent holding it will pass down their Nature to the offspring. If both parents hold one, it's random between the two. 
 * **Egg Group** = Pokemon can only breed with other Pokemon that are in the same egg group. They don't necessarily need to be the same species, but they need to have the same egg group. Egg groups are broad categories, such as "Dragon", "Flying", and "Field". Pokemon can be in 1-2 egg groups.
@@ -64,9 +65,10 @@ In some circumstances, a mathematical formula is used to calculate the real chan
 * **all_destiny_knot_scenarios_visualizer.py** — Visualizes all of the possible starting conditions mentioned above.
 * **unique_vs_overall_ivs.py** — Compares the efficiency of prioritizing the number of unique 31s in the pool versus overall 31s in the pool.
 * **breed_to_progress.py** — Compares averages tries to make any optimal progress towards a 6IV from given starting conditions with and without a Destiny Knot.
+* **specific_position_31s.py** — Finds average tries to breed to an nIV Pokemon where the 31s are in a certain number of specific slots.
 * **roll_new_31.py** — Finds chance to roll at least one 31 given a certain amount of rolled stats.
 * **random_31s.py** — Calculate chance to randomly roll n 31s.
-*  **fixed_iv_roll.py** — Given three guaranteed 31s, what's the chance they're the exact three stats you wanted?
+* **fixed_iv_roll.py** — Given three guaranteed 31s, what's the chance they're the exact three stats you wanted?
 * **inherit_specific_stats.py** — What is the chance an offspring will inherit n number of specific stats from the pool?
 * **optimal_male_ratio.py** — Breed to a certain number of IVs with different male ratios, and test for the optimal to reach the given goals. ie get a Male 6IV with 50% male chance, then 51%, 52%, etc for range given. Bit on the slower side, since it's running so many each time.
 ## Conclusions
@@ -142,6 +144,8 @@ No! Barring genderless/"undiscovered" Pokemon, which can't regularly breed (will
 A lot of Pokemon belong to **two** egg groups. This is the key point of propagating IVs not just to other species in the same egg group, but all other egg groups as well.  
 Below is a graph (generated using https://graphonline.ru/en/) illustrating all the connections using two-egg-group Pokemon in BDSP (there are significantly more connections with the later-added Pokemon).
 ![Number = connection points](https://i.imgur.com/PzHGAC0.png)  
+*Number corresponds to number of connections that egg group has*
+
 For example, say you had three species: one in Flying and Dragon, one in Dragon and Monster, and one in Monster and Field. Each of these two-egg-group species contributes a link between each of their egg groups. Using mutual links, you can travel from one egg group to another even if there are no direct connections. In this case, you could use the Dragon + Monster as the intermediary between Flying and Field.  
 #### So, what's the strategy?
 The idea is to have a 6IV male for each egg group. That way, if you ever need to breed a 6IV, you can use the 6IV male you have in the corresponding egg group to easily work towards the 6IV you want. When you're at that point, breeding optimally (Destiny Knot, Power Items, selection strategy), it only takes about **4 breeds** to get to **5IV** (assuming normal gender ratio of 50-50). Including those 4 tries, it's around **36** breeds for a **6IV**!
@@ -264,6 +268,25 @@ Below is a table (for BDSP) of all the duo-egg-group Pokemon, sorted by efficien
     [(26.4) 30, 87.5% Male] Kabuto/Omanyte (Water1)
     [(33.4) 20, 25% Male] Corsola (Water1)
 ```
+#### What about starting from scratch for each duo-egg-group?  
+What about, instead of using IV propagation and needing 12 Pokemon to cover all the egg groups (+1 coverage per aside from +2 start), we start over from scratch with duo-egg-group Pokemon each time and only use 7 (+2 coverage per aside from +1 last). Propagating is by far faster on an individual level, but is saving on 5 Pokemon enough for starting from scratch to actually be more efficient? Since the last step would be +1, you could propagate to save some there (13 egg groups, 2 * 6 duos = 12 covered, one left). Let's calc it!
+
+What we need:
+* Average tries to get the 6IV male from scratch
+* Average tries to get the 6IV from propagating
+* Way to factor difference in average egg cycles (hatch time) requirement per Pokemon going to best 7 efficiencies instead of best 12.
+* Way to factor wasted breeds from having to switch out the progenitors a lot more (in the time you could be getting more eggs, you're having to wait on specific building blocks on a smaller level and having to manage several branches at once).
+
+**Let's start with average tries for a 6IV male from scratch**. Assume you have all 6 IVs between Dittos or anything compatible with the starting Pokemon (so we can use Power Items to introduce them into our pool). It will take **3** breeds to get three 1IVs (so we can start getting 2IVs).
+
+For 2IVs, the first one's gender doesn't matter. That's **2.46** breeds on average to go from two 1IVs (no overlap) to a 2IV compromising the two unique IVs. The second 2IV's gender will matter, as it will need to breed with the first. That's an average of **3.7** breeds. We'll use those to get a 4IV, and then will need another gender-specific 2IV afterwards, so add another 3.7. `3 + 2.46 + 3.7*2 = 12.86` so far.
+
+Next is the 4IV. Gender doesn't matter (we already considered the gender-specificity with the third 2IV from the last section). That's an average of **9.7 breeds**.
+
+Lastly is the 6IV, using the 4IV + 2IV. Must be male (even if we don't propagate to get our initial egg group coverage, propagating to other species is still the ultimate purpose). That's an average of **102.3** breeds. `102.3 + 9.7 + 12.86 = 124.86`. **124.86 average breeds to optimally breed to 6IV from scratch (50-50 male ratio).**
+
+**Next, 6IV male from propagating, and an initial estimate.** This is an easy figure to get from the simulation files. Around **68** breeds on average. What have we got so far just based on # of Pokemon? With propagation, that's 1 from scratch and 11 propagations: `124.86 + 68*11 = 872.86`. For the other approach, it's 6 from scratch and 1 propagation: `124.86*6 + 68 = 817.16`.😅
+### How big is the difference, really?
 
 ### Misc comments
 * Getting to 5IV is very consistent, but 6IV gets more complicated, since the most IVs an offspring can inherit is five (using Destiny Knot). This means even with two 6IV parents, the best odds you can achieve are 1/32 for another 6IV offspring.  
