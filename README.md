@@ -125,7 +125,7 @@ Scenarios where **no knot** wins (optimal Unique-focus breeding):
 * In terms of just 6IV breeding, no IV propagation considered, gender ratio should be as close to 50-50 as possible. See the below graph on the relationship between chance for a male offspring and average tries to get a 6IV offspring (specific simulation was starting from two 0IVs, optimal settings but no power items).
 **Note: please mind the axis labels. These graphs do not start with y at 0.**  
 ![For just 6IVs, 50% is best](https://i.imgur.com/nM0EQc3.png)  
-* If you're trying to breed a 6IV male (same simulation as above but offspring must be male; careful, first impression of this is very misleading, the scale being thrown off so hard by low male chance almost makes the rest of the graph look flat; see further graphs; **interval is 5-95% chance for male**):  
+If you're trying to breed a 6IV male (same simulation as above but offspring must be male; careful, first impression of this is very misleading, the scale being thrown off so hard by low male chance almost makes the rest of the graph look flat; see further graphs; **interval is 5-95% chance for male**):  
 ![5-95% male ratio interval](https://i.imgur.com/UuA1uUH.png)  
 Here is a closer-up (**interval of 40-90% male ratio**):  
 ![40-90% male ratio interval](https://i.imgur.com/8wzMCOh.png)  
@@ -311,14 +311,19 @@ What we have now:
 
 We're ready to tackle the third point. We can multiply average tries per male 6IV by total base egg cycles for that breed type (from-scratch vs propagation breed) to see how many total egg cycles on average we'll need to complete a full route.
 
-First, the propagation-centric route: `124.86 * 5 + 68 * 166.4 = 11939.5`. The **5** comes from Magikarp's base egg cycles (we start from scratch with Magikarp), then the **166.4** from base egg cycles for the propagation breeds (171.4 - the 5 from Magikarp).  
-Next, the from-scratch-centric route: `124.86 * 86.4 + 68 * 20 = 12147.904`.  **86.4** is the sum of base egg cycles to be done from-scratch, then the **20** is Snorunt's (propagation).
+First, the propagation-centric route: `124.86 * 5 + 68 * 166.4 = 11939.5`. About **11940** total egg cycles. The **5** comes from Magikarp's base egg cycles (we start from scratch with Magikarp), then the **166.4** from base egg cycles for the propagation breeds (171.4 - the 5 from Magikarp).  
+Next, the from-scratch-centric route: `124.86 * 86.4 + 68 * 20 = 12147.904`. About **12148** total egg cycles. **86.4** is the sum of base egg cycles to be done from-scratch, then the **20** is Snorunt's (propagation).
 
 At this point, it's safe to say the propagation approach is notably more efficient. The fourth point is a bit harder to factor in, but it only works in favor of the propagation-centric route anyways (something like 5 breeds wasted for each of the initial 1IVs, and then another few each for the 2IVs?). 
 
 **Conclusion:** It's close, but because of the lack of diversity in low-egg-cycle duo-egg-type Pokemon available in BDSP, you can't cut down the base egg cycles enough for the from-scratch approach to overcome the extra breeds per 6IV.
 ### How big is the difference using optimal strategies, really?
-
+#### Destiny Knot vs No Destiny Knot
+#### Optimal Destiny Knot vs Always Destiny Knot
+#### Unique-IVs Priority vs Overall-IVs Priority (Progenitor Replacements)
+#### Power Items vs No Power Items
+#### 50-50 Male Ratio vs Optimal Male Ratio
+#### Egg Group Propagation Strategies
 ### Misc comments
 * Getting to 5IV is very consistent, but 6IV gets more complicated, since the most IVs an offspring can inherit is five (using Destiny Knot). This means even with two 6IV parents, the best odds you can achieve are 1/32 for another 6IV offspring.  
 * The hardest simulation to find answers for, by far, was the **all_destiny_knot_scenarios** files. I was stumped for a long time on what "every possible scenario" really was. It took a lot of trial and error until I finally caught onto the significance of Unique IVs / overlaps, and then figured out how to formulaically loop through each combination. "Two 3IV parents" is actually almost too vague to be meaningful. There could be anywhere from 0-3 overlaps, which corresponds to 3-6 unique 31s (between half of the desired IVs somewhere in the pool and all of them).  
