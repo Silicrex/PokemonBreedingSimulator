@@ -15,9 +15,9 @@
     6f. [Power items vs Everstone](#power-items-vs-everstone)  
     6g. [Offspring gender ratio [Graphs]](#offspring-gender-ratio)  
     6h. [Egg group propagation: the how and why [Graphs]](#egg-group-propagation-the-how-and-why)  
-    6i. [How big is the difference, really?](#how-big-is-the-difference-really)
-7. [Misc comments](#misc-comments)
-8. [Disclaimer](#disclaimer)
+    6i. [How big is the difference using optimal strategies, really?](#how-big-is-the-difference-using-optimal-strategies-really)
+8. [Misc comments](#misc-comments)
+9. [Disclaimer](#disclaimer)
 ## What is this? 
 * Various simulations for Pokemon **IV breeding**. **IVs** are hereditary values which have a role in determining the **stat values** of a Pokemon (they're like points added onto the species' base stats). Each Pokemon has **six IVs**— one for Health, Attack, Defense, Special Attack, Special Defense, and Speed. IVs range from **0–31** in value.    
 * The general **goal** of IV breeding is to get an **offspring with max-value IVs for all six stats**. This could be for **competitive, collector, completionist**, or etc purposes!    
@@ -160,6 +160,7 @@ The **factors**:
 
 The **route (BDSP)**:
 Again, there are several routes you could take which are equally optimal. This is an example of a route which minimizes the cost of the above factors as much as possible:  
+Credit to the https://pokemondb.net/egg-group/amorphous pages which I used for compiling the data  
 ```
 MAGIKARP (UNLOCK DRAGON/WATER2)
 MAGIKARP -> SWABLU (UNLOCK FLYING)
@@ -268,6 +269,7 @@ Below is a table (for BDSP) of all the duo-egg-group Pokemon, sorted by efficien
     [(26.4) 30, 87.5% Male] Kabuto/Omanyte (Water1)
     [(33.4) 20, 25% Male] Corsola (Water1)
 ```
+
 #### What about starting from scratch for each duo-egg-group?  
 What about, instead of using IV propagation and needing 12 Pokemon to cover all the egg groups (+1 coverage per aside from +2 start), we start over from scratch with duo-egg-group Pokemon each time and only use 7 (+2 coverage per aside from +1 last). Propagating is by far faster on an individual level, but is saving on 5 Pokemon enough for starting from scratch to actually be more efficient? Since the last step would be +1, you could propagate to save some there (13 egg groups, 2 * 6 duos = 12 covered, one left). Let's calc it!
 
@@ -286,7 +288,36 @@ Next is the 4IV. Gender doesn't matter (we already considered the gender-specifi
 Lastly is the 6IV, using the 4IV + 2IV. Must be male (even if we don't propagate to get our initial egg group coverage, propagating to other species is still the ultimate purpose). That's an average of **102.3** breeds. `102.3 + 9.7 + 12.86 = 124.86`. **124.86 average breeds to optimally breed to 6IV from scratch (50-50 male ratio).**
 
 **Next, 6IV male from propagating, and an initial estimate.** This is an easy figure to get from the simulation files. Around **68** breeds on average. What have we got so far just based on # of Pokemon? With propagation, that's 1 from scratch and 11 propagations: `124.86 + 68*11 = 872.86`. For the other approach, it's 6 from scratch and 1 propagation: `124.86*6 + 68 = 817.16`.😅
-### How big is the difference, really?
+
+So far, we've covered the first two points in determining which is more efficient. We've also seen that, at a little-more-than-cursory glance, it seems the  'starting from scratch' approach is more efficient for the *initial egg group outreach* (with all we've considered so far, although from-scratch won, you are only getting seven 6IVs from ~817 breeds instead of twelve 6IVs from ~873 breeds). Let's see how we can factor the other two components in.
+
+How do we factor the difference in **average amount of egg cycles per Pokemon**? I thought from-scratch would win in this regard, since you work with the best 7 instead of best 12, but this is not the case. The majority of super-low-egg-cycle duo-egg-group Pokemon have Fairy as one of their egg groups, and since we need to +2 each step (aside from the last), we need absolutely no repeats.
+
+From the propagation section, we know **171.4** is the lowest amount of base egg cycles to complete the route. The best I could come up with for from-scratch was **106.4**:
+```
+Magikarp [5] (Water2/Dragon)
+Togepi [8.8 (10)] (Fairy/Flying)
+Ralts [20] (Amorphous/Human-like)
+Skorupi [20] (Bug/Water3)
+Snorunt [20] (Mineral)
+Seedot [15] (Field/Grass)
+Squirtle [17.6 (20)] (Water1/Monster)
+```  
+What we have now:
+* ~**124.86 breeds** for a male 6IV from scratch.
+* ~**68 breeds** for a male 6IV from propagation.
+* **171.4 base egg cycles** total for propagation.
+* **106.4 base egg cycles** total for from-scratch.  
+
+We're ready to tackle the third point. We can multiply average tries per male 6IV by total base egg cycles for that breed type (from-scratch vs propagation breed) to see how many total egg cycles on average we'll need to complete a full route.
+
+First, the propagation-centric route: `124.86 * 5 + 68 * 166.4 = 11939.5`. The **5** comes from Magikarp's base egg cycles (we start from scratch with Magikarp), then the **166.4** from base egg cycles for the propagation breeds (171.4 - the 5 from Magikarp).  
+Next, the from-scratch-centric route: `124.86 * 86.4 + 68 * 20 = 12147.904`.  **86.4** is the sum of base egg cycles to be done from-scratch, then the **20** is Snorunt's (propagation).
+
+At this point, it's safe to say the propagation approach is notably more efficient. The fourth point is a bit harder to factor in, but it only works in favor of the propagation-centric route anyways (something like 5 breeds wasted for each of the initial 1IVs, and then another few each for the 2IVs?). 
+
+**Conclusion:** It's close, but because of the lack of diversity in low-egg-cycle duo-egg-type Pokemon available in BDSP, you can't cut down the base egg cycles enough for the from-scratch approach to overcome the extra breeds per 6IV.
+### How big is the difference using optimal strategies, really?
 
 ### Misc comments
 * Getting to 5IV is very consistent, but 6IV gets more complicated, since the most IVs an offspring can inherit is five (using Destiny Knot). This means even with two 6IV parents, the best odds you can achieve are 1/32 for another 6IV offspring.  
