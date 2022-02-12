@@ -1,14 +1,15 @@
 from helper_functions import *
 
 # ---------- SETTINGS
+power_item_setting = False  # False = don't use. True = automatically use optimally.
 male_chance = 0.5
-runs = 1000
+runs = 1000000
 interactive = False
 seed = random.random()  # None or seed. Used for running the comparisons on the same seed.
 # ^ Use random.random() for same seed between unique/overall focus but random seed between runs of the program
 
 male = [31, 31, 31, 0, 0, 0]
-female = [31, 31, 31, 0, 0, 0]
+female = [0, 0, 0, 31, 31, 31]
 # ----------
 
 if male.count(31) + female.count(31) == 12:
@@ -17,20 +18,24 @@ if male.count(31) + female.count(31) == 12:
 
 overall_tries_with_knot = 0
 overall_tries_without_knot = 0
-for iteration in range(2):  # Do a run with destiny knot, then run without
+for iteration in range(1):  # Do a run with destiny knot, then run without
     if seed is not None:
         random.seed(seed)
     for _ in range(runs):
         tries = 0  # Local try number
         while True:  # Loop will break when optimal progress is made
             tries += 1
+            power_item_data = None
+            if power_item_setting is True:
+                power_item_data = check_for_power_item(male, female)
+                # print(f'{power_item_data=}')
             if iteration == 0:  # Do destiny knot first
-                iv_slots = roll_inheritance(destiny_knot=True)
+                iv_slots = roll_inheritance(destiny_knot=True, power_item_data=power_item_data)
             else:
-                iv_slots = roll_inheritance()
+                iv_slots = roll_inheritance(power_item_data=power_item_data)
             if interactive:
                 print(f'Inherited IV positions: {iv_slots}')
-            offspring = generate_offspring(male, female, iv_slots, interactive=interactive)
+            offspring = generate_offspring(male, female, iv_slots, power_item_data, interactive=interactive)
             if roll_gender(male_chance) == 'male':  # Gender roll
                 if interactive:
                     print(f'Offspring #{tries} = {offspring} (Male {offspring.count(31)}IV)')
@@ -40,7 +45,7 @@ for iteration in range(2):  # Do a run with destiny knot, then run without
                     break
             else:
                 if interactive:
-                    print(f'Offspring #{tries} = {offspring} (Male {offspring.count(31)}IV)')
+                    print(f'Offspring #{tries} = {offspring} (Female {offspring.count(31)}IV)')
                 if check_for_replace(female, male, offspring, interactive=interactive):
                     if interactive:
                         print('>>> Beats female')
