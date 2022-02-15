@@ -17,8 +17,9 @@
    6g. [Offspring gender ratio [Graphs]](#offspring-gender-ratio)  
    6h. [Egg group propagation: the how and why [Graphs]](#egg-group-propagation-the-how-and-why)  
    6i. [How big is the difference using optimal strategies, really?](#how-big-is-the-difference-using-optimal-strategies-really)  
-7. [Misc comments](#misc-comments)  
-8. [Disclaimer](#disclaimer)  
+7. [Final Thoughts](#final-thoughts)  
+8. [Misc comments](#misc-comments)  
+9. [Disclaimer](#disclaimer)  
 
 ## What is this?
 
@@ -586,7 +587,7 @@ _Six duo-egg-group species from scratch, then one from propagation_
 * The lowest total base egg cycles I've found is **106.4**.
 * The worst I've found is **180**.
 
-> **Final Thoughts**
+### Final Thoughts
 
 For pretty much each step in the process, one efficient pick alone would make a significant, noticeable difference. Cumulatively, the difference is incredibly large. It should be noted, though, that there are definitely cases where specific constraints or goals impact what strategies would be most efficient (things like version-exclusive Pokemon being inaccessible, already wanting certain 6IVs which can also be used for IV propagation, wanting to invest different levels of effort into certain areas, etc).  
 
