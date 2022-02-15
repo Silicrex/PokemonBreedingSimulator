@@ -3,7 +3,7 @@ from helper_functions import *
 # ---------- SETTINGS
 power_item_setting = False  # False = don't use. True = automatically use optimally.
 male_chance = 0.5
-runs = 1000000
+runs = 10000
 interactive = False
 seed = random.random()  # None or seed. Used for running the comparisons on the same seed.
 # ^ Use random.random() for same seed between unique/overall focus but random seed between runs of the program

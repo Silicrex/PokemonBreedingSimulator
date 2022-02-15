@@ -14,8 +14,8 @@ for _ in range(runs):
         iv_slots.remove(random.choice(iv_slots))
     if set(range(3)).issubset(set(iv_slots)):
         count += 1
-print(f'{count/runs:.3%}')
+print(f'Simulated result: {count/runs:.3%}')
 
 # By combinations (direct)
 combinations = math.factorial(6)/(math.factorial(3) * math.factorial(6 - 3))
-print(f'1/{combinations} ({1/combinations:.2%})')
+print(f'Real result: 1/{combinations} ({1/combinations:.2%})')
