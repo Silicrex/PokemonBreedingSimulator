@@ -25,7 +25,7 @@
 * Various simulations for Pokemon **IV breeding**. **IVs** are hereditary values which have a role in determining the **stat values** of a Pokemon (they're like points added onto the species' base stats). Each Pokemon has **six IVs**— one for Health, Attack, Defense, Special Attack, Special Defense, and Speed. IVs range from **0–31** in value.
 * The general **goal** of IV breeding is to get an **offspring with max-value IVs for all six stats**. This could be for **competitive, collector, completionist**, or etc purposes!
 * Progress is made by **selectively breeding** to keep desirable values and remove undesirable values.
-* Testing is all for the **BDSP (Brilliant Diamond & Shining Pearl)** games. Most concepts should apply to all the modern games (only difference I can think of is the egg group propagation).
+* Testing is all for the **BDSP (Brilliant Diamond & Shining Pearl)** games. Most concepts should apply to all the modern games (only difference I can think of is the egg group propagation; different species available and some species have their egg groups changed between games ie Ralts).
 
 ## Usage
 
@@ -273,7 +273,13 @@ Below is a table (for BDSP) of all the duo-egg-group Pokemon, sorted by efficien
   cycle value is 17.6 (20 regularly). Both species have an 87.5% male rate. Using Treecko vs Charmander makes no
   difference. Monster is the egg group you need to have already to link here. Dragon is the egg group you unlock.
 - Gender ratio is handled like this: what is the percentage of tries more/less this gender ratio causes you to need?
-  Apply that as a multiplier to the egg cycle value.
+  Apply that as a multiplier to the egg cycle value.  
+
+| Male Ratio | Avg Breeds For 6IV Male | Multiplier  |
+|:----------:|:-----------------------:|:-----------:|
+|    25%     |          154.8          | 1.66990291  |
+|    50%     |          92.7           |      1      |
+|   87.5%    |          81.5           | 0.879180151 |
 
 ```
 >>> Amorphous: 
@@ -425,8 +431,8 @@ What we have now:
 
 * ~**124.86 breeds** for a male 6IV from scratch.
 * ~**68 breeds** for a male 6IV from propagation.
-* **171.4 base egg cycles** total for propagation.
-* **106.4 base egg cycles** total for from-scratch.
+* **171.4 base egg cycles** total for propagation (scaled to factor gender ratio).
+* **106.4 base egg cycles** total for from-scratch (scaled to factor gender ratio).
 
 We're ready to tackle the third point. We can multiply average tries per male 6IV by total base egg cycles for that
 breed type (from-scratch vs propagation breed) to see how many total egg cycles on average we'll need to complete a full
@@ -450,12 +456,12 @@ The propagation approach is more efficient to a worthwhile extent!
 
 ### How big is the difference using optimal strategies, really?
 
-> Destiny Knot vs No Destiny Knot
+> **Destiny Knot vs No Destiny Knot**
 
 * Ok, look, you need a Destiny Knot. Even if you have two 6IV parents already, your best odds without a Destiny Knot
   are **1/32768**.
 
-> Optimal Destiny Knot vs Always Destiny Knot
+> **Optimal Destiny Knot vs Always Destiny Knot**
 
 Starting with a **0IV + 0IV**, no power items, 50/50 male ratio, one-branch (start with two progenitors and doing
 replacements from there, not collecting the unique IVs first):
@@ -463,7 +469,7 @@ replacements from there, not collecting the unique IVs first):
 * Using Destiny Knot optimally, it's around **313 breeds** on average for a 6IV.
 * Always using Destiny Knot, it's around **485 breeds** on average for a 6IV.
 
-> Unique-IVs Priority vs Overall-IVs Priority (Progenitor Replacements)
+> **Unique-IVs Priority vs Overall-IVs Priority (Progenitor Replacements)**
 
 **0IV + 0IV**, optimal Destiny Knot (based on replacement strategy), no power items, 50-50 male ratio, one-branch:
 
@@ -486,21 +492,21 @@ P.S. The more spread out unique IVs are the more difficult it is to make progres
 
 
 |  Parents  | Avg Breeds For Progress |
-| :---------: | :-----------------------: |
+|:---------:|:-----------------------:|
 | 6IV + 0IV |           2.1           |
 | 5IV + 1IV |            5            |
-| 4IV + 2IV |          12.2          |
-| 3IV + 3IV |          19.7          |
+| 4IV + 2IV |          12.2           |
+| 3IV + 3IV |          19.7           |
 
 
 |  Parents  | Avg Breeds For Progress w/ Power Items |
-| :---------: | :--------------------------------------: |
-| 6IV + 0IV |                   2                   |
-| 5IV + 1IV |                  4.9                  |
+|:---------:|:--------------------------------------:|
+| 6IV + 0IV |                   2                    |
+| 5IV + 1IV |                  4.9                   |
 | 4IV + 2IV |                  10.8                  |
 | 3IV + 3IV |                  11.5                  |
 
-> Power Items vs No Power Items
+> **Power Items vs No Power Items**
 
 **0IV + 0IV** optimal Destiny Knot, 50-50 male ratio, one-branch:
 
@@ -517,7 +523,7 @@ P.S. The more spread out unique IVs are the more difficult it is to make progres
 * Around **72 breeds** on average for a 6IV with Power items
 * Around **132 breeds** on average for a 6IV without Power items
 
-> 50-50 Male Ratio vs Optimal Male Ratio  
+> **50-50 Male Ratio vs Optimal Male Ratio**  
 > 
 _Note_: these are approximations based on simulations, not exact calculation, so expect some variance (even potentially for values that should have the exact yield; some are adjusted a little to reflect when values "should" be the same)
 
@@ -561,7 +567,23 @@ _Note_: these are approximations based on simulations, not exact calculation, so
 * Around **81 breeds** on average for a male 6IV with a 87.5% male ratio
 * Around **106 breeds** on average for a male 6IV with a 95% male ratio
 
-> Egg Group Propagation Strategies
+> **Egg Group Propagation Strategies (BDSP)**  
+
+Comparisons between amount of breeds and amount of egg cycles required were done directly (in proportion) with even weighting. My reasoning for this is that they're directly-connected values, and modifying either has roughly the same overall impact on cost/time. If you have a species with **5 egg cycles** and need to breed 10 offspring, you will need to go through 50 egg cycles overall. If you doubled the amount you needed, you have to go through 50 egg cycles. If you instead doubled the amount of egg cycles per hatch, you'd still land at 50 egg cycles— the cost of picking up an extra egg in the first scenario is comparatively negligible.
+
+**Best duo-egg-group propagation vs worst single-egg-group species selections**  
+_6IV Male; Egg cycles scaled for male ratio_
+* **Best propagation route I found:** **11939.5** average egg cycles (optimized propagation; 171.4 base).
+* **Worst single-egg-group route I found:** **43725.972** average egg cycles (one-at-a-time from-scratch; 350.2 base).
+
+**For duo-egg-group propagation:**  
+_Start with duo-egg-group for +2, then +1 each propagating to duos for the rest_
+* The lowest total base egg cycles I've found is **171.4**.
+* The worst I've found is **353.98**.
+
+**For efficient from-scratch:**
+* The lowest total base egg cycles I've found is **106.4**.
+* The worst I've found is **180**.
 
 ### Misc comments
 
@@ -579,3 +601,4 @@ _Note_: these are approximations based on simulations, not exact calculation, so
 * Any errors? Please feel free to reach out!
 * I did not necessarily code the mechanics in a way that perfectly matches the real in-game process (I don't know how
   it's all specifically implemented— but the abstraction here is identical as far as I'm aware).
+* For the overall base egg cycles sections, the search was done semi-manually, so I am not 100% sure they are the best possible. Will work on how to solve it computationally when I get a better idea for how that would be done!
