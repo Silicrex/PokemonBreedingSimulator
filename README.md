@@ -125,7 +125,7 @@ See below section on [How big is the difference using optimal strategies, really
 
 * It is not always optimal to use a Destiny Knot. You don't want a low mutation rate when the current IV pool is lacking crucial components.  
 * It slightly depends on your breeding approach (between Unique IVs focus vs Overall IVs focus).
-> Unique IVs Focus
+> **Unique IVs Focus**
 
 * If you are trying to optimally breed to 6IV with **Unique IVs focus**: DO NOT USE A DESTINY KNOT IF **neither parent is a 6IV and total_unique_31s == total_overall_31s / 2**. This represents the situation where the IV pool doesn't have all 6 unique IVs and all 31s are on overlaps *for example: [31, 31, 31, 0, 0, 0] and [31, 31, 31, 0, 0, 0]  is **missing unique IVs and all 31s are overlaps**.*  As portrayed in the section above, it is better to have a 1IV that gives you a new unique IV than a 5IV which only has overlaps with the other parent. Using a Destiny Knot is optimal in all other scenarios.
 
@@ -137,7 +137,7 @@ Scenarios where **no knot** wins (optimal Unique-focus breeding):
 ![From all_destiny_knot_scenarios.py](https://i.imgur.com/48aWQLW.png)  
 ![From all_destiny_knot_scenarios.py](https://i.imgur.com/tKRhWXz.png)  
 
-> Overall IVs Focus
+> **Overall IVs Focus**
 
 * If you're breeding with an **Overall IVs focus**, there are only two scenarios to not use a Destiny Knot in: **0IV + 0IV** and **1IV + 1IV (1 overlap)**. 2IV + 2IV (2 overlaps) is close to even efficiency between knot or no knot, but it leans towards using the knot.
 
@@ -166,11 +166,11 @@ See below section on [How big is the difference using optimal strategies, really
 * Starting from 6IV + 0IV goes from around **62 breeds** with no power items to **36 breeds** with power items.
 
 ### Offspring gender ratio
-> When does it matter?
+> **When does it matter?**
 
 * Gender ratio mostly comes in concerning egg group propagation. This is because you need male 6IVs to propagate IVs to different species (the female parent determine the species, so you can't use their IVs across different species/egg groups).
 * The progenitors you're starting with have a significant impact on what would be the most efficient gender ratio (if you have a 0IV Male + 6IV Female and are breeding for a 6IV Male, you'd want as high of a male ratio as possible, since the female progenitor is already the best possible and wouldn't need any progress).
-> Breeding for 6IV from 0IV + 0IV
+> **Breeding for 6IV from 0IV + 0IV**
 * In terms of just 6IV breeding, where offspring gender doesn't matter, gender ratio should be as close to **50-50** as possible. See the below graph on the relationship between chance for a male offspring and average tries to get a 6IV offspring (optimal settings but no power items; **interval of 5%-95% male chance**).  
 **Note: please mind the axis labels. These graphs do not start with y at 0.**  
   ![For just 6IVs, 50% is best](https://i.imgur.com/w9pybc6.png)
@@ -179,7 +179,7 @@ See below section on [How big is the difference using optimal strategies, really
 * Here is a closer-up (**interval of 40%-90% male chance**):  
   ![40-90% male ratio interval](https://i.imgur.com/zLa3Sfw.png)
 * 50% is definitely not the optimal point in this case! Starting from scratch, around a 72% chance for a male offspring is the most efficient.
-> Breeding for 6IV from 6IV + 0IV
+> **Breeding for 6IV from 6IV + 0IV**
 
 * Practically speaking, the most significant number concerning optimal gender ratios is for when you already have a 6IV male and want to propagate it to other egg groups. Here is the graph for starting with a 6IV male and 0IV female (offspring must be a male 6IV; **45-90% male ratio interval**):  
   ![45-90% male ratio interval, start with 6IV male](https://i.imgur.com/nvbXLK1.png)
@@ -581,19 +581,28 @@ _Start with duo-egg-group for +2, then +1 each propagating to duos for the rest_
 * The lowest total base egg cycles I've found is **171.4**.
 * The worst I've found is **353.98**.
 
-**For efficient from-scratch:**
+**For efficient from-scratch:**  
+_Six duo-egg-group species from scratch, then one from propagation_
 * The lowest total base egg cycles I've found is **106.4**.
 * The worst I've found is **180**.
+
+> **Final Thoughts**
+
+For pretty much each step in the process, one efficient pick alone would make a significant, noticeable difference. Cumulatively, the difference is incredibly large. It should be noted, though, that there are definitely cases where specific constraints or goals impact what strategies would be most efficient (things like version-exclusive Pokemon being inaccessible, already wanting certain 6IVs which can also be used for IV propagation, wanting to invest different levels of effort into certain areas, etc).  
+
+I've learned a lot in the making of this, and do feel I found answers to all the questions I had walking into the project! Yay!  
+
+Thanks so much for checking this out! 
 
 ### Misc comments
 
 * Getting to 5IV is very consistent, but 6IV gets more complicated, since the most IVs an offspring can inherit is
   five (using Destiny Knot). This means even with two 6IV parents, the best odds you can achieve are 1/32 for another
   6IV offspring.
-* The hardest simulation to find answers for, by far, was the **all_destiny_knot_scenarios** files. I was stumped for a
+* The hardest simulation to develop was **all_destiny_knot_scenarios**. There were a lot of times I was super stumped, but aside from trying to minimize the cost of egg group propagation routes, nothing took as long to figure out! I was stumped for a
   long time on what "every possible scenario" really was. It took a lot of trial and error until I finally caught onto
-  the significance of Unique IVs / overlaps, and then figured out how to formulaically loop through each combination. "
-  Two 3IV parents" is actually almost too vague to be meaningful. There could be anywhere from 0-3 overlaps, which
+  the significance of Unique IVs / overlaps, and then figured out how to formulaically loop through each combination.
+  "Two 3IV parents" is actually almost too vague to be meaningful. There could be anywhere from 0-3 overlaps, which
   corresponds to 3-6 unique 31s (between half of the desired IVs somewhere in the pool and all of them).
 
 ## Disclaimer
