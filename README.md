@@ -124,10 +124,10 @@ See below section on [How big is the difference using optimal strategies, really
 ### When a Destiny Knot is optimal
 
 * It is not always optimal to use a Destiny Knot. You don't want a low mutation rate when the current IV pool is lacking crucial components.  
-* It slightly depends on your breeding approach (between Unique IVs focus vs Overall IVs focus).  
+* It slightly depends on your breeding approach (between Unique IVs focus vs Overall IVs focus).
+> Unique IVs Focus
 
-* If you are trying to optimally breed to 6IV with Unique IVs focus: DO NOT USE A DESTINY KNOT IF **neither parent is a 6IV and total_unique_31s == total_overall_31s / 2**. This represents the situation where the IV pool doesn't have all 6 unique IVs and all 31s are on overlaps *for example: [31, 31, 31, 0, 0, 0] and [31, 31, 31, 0, 0, 0]  is **missing unique IVs and all 31s are overlaps**.*  As portrayed in the section above, it is better to have a 1IV that gives you a new unique IV than a 5IV which only has overlaps with the other parent. Using a Destiny Knot is optimal in all other scenarios.
-* If you're breeding with an Overall IVs focus, there are only two scenarios to not use a Destiny Knot in: 0IV + 0IV and 1IV + 1IV (1 overlap). 2IV + 2IV (2 overlaps) is close to even efficiency between knot or no knot, but it leans towards using the knot (again, to clarify, only with an Overall IVs focus, which is less efficient for reaching 6IV).  
+* If you are trying to optimally breed to 6IV with **Unique IVs focus**: DO NOT USE A DESTINY KNOT IF **neither parent is a 6IV and total_unique_31s == total_overall_31s / 2**. This represents the situation where the IV pool doesn't have all 6 unique IVs and all 31s are on overlaps *for example: [31, 31, 31, 0, 0, 0] and [31, 31, 31, 0, 0, 0]  is **missing unique IVs and all 31s are overlaps**.*  As portrayed in the section above, it is better to have a 1IV that gives you a new unique IV than a 5IV which only has overlaps with the other parent. Using a Destiny Knot is optimal in all other scenarios.
 
 Scenarios where **no knot** wins (optimal Unique-focus breeding):
 ![From all_destiny_knot_scenarios.py](https://i.imgur.com/fyWsbKb.png)  
@@ -136,6 +136,10 @@ Scenarios where **no knot** wins (optimal Unique-focus breeding):
 ![From all_destiny_knot_scenarios.py](https://i.imgur.com/tefDJkA.png)  
 ![From all_destiny_knot_scenarios.py](https://i.imgur.com/48aWQLW.png)  
 ![From all_destiny_knot_scenarios.py](https://i.imgur.com/tKRhWXz.png)  
+
+> Overall IVs Focus
+
+* If you're breeding with an **Overall IVs focus**, there are only two scenarios to not use a Destiny Knot in: **0IV + 0IV** and **1IV + 1IV (1 overlap)**. 2IV + 2IV (2 overlaps) is close to even efficiency between knot or no knot, but it leans towards using the knot.
 
 See below section on [How big is the difference using optimal strategies, really?](#how-big-is-the-difference-using-optimal-strategies-really) for a different comparison!
 
@@ -162,27 +166,26 @@ See below section on [How big is the difference using optimal strategies, really
 * Starting from 6IV + 0IV goes from around **62 breeds** with no power items to **36 breeds** with power items.
 
 ### Offspring gender ratio
+> When does it matter?
 
 * Gender ratio mostly comes in concerning egg group propagation. This is because you need male 6IVs to propagate IVs to different species (the female parent determine the species, so you can't use their IVs across different species/egg groups).
 * The progenitors you're starting with have a significant impact on what would be the most efficient gender ratio (if you have a 0IV Male + 6IV Female and are breeding for a 6IV Male, you'd want as high of a male ratio as possible, since the female progenitor is already the best possible and wouldn't need any progress).
+> Breeding for 6IV from 0IV + 0IV
 * In terms of just 6IV breeding, where offspring gender doesn't matter, gender ratio should be as close to **50-50** as possible. See the below graph on the relationship between chance for a male offspring and average tries to get a 6IV offspring (optimal settings but no power items; **interval of 5%-95% male chance**).  
 **Note: please mind the axis labels. These graphs do not start with y at 0.**  
   ![For just 6IVs, 50% is best](https://i.imgur.com/w9pybc6.png)
-
-
 * If you're trying to breed a 6IV male (same simulation as above; **interval of 5%-95% male chance**):  
   ![5-95% male ratio interval](https://i.imgur.com/KcCQZwI.png)
-
-    Here is a closer-up (**interval of 40%-90% male chance**):  
-  ![40-90% male ratio interval](https://i.imgur.com/zLa3Sfw.png)  
-    50% is definitely not the optimal point in this case! Starting from scratch, around a 72% chance for a male offspring is the most efficient.
-
+* Here is a closer-up (**interval of 40%-90% male chance**):  
+  ![40-90% male ratio interval](https://i.imgur.com/zLa3Sfw.png)
+* 50% is definitely not the optimal point in this case! Starting from scratch, around a 72% chance for a male offspring is the most efficient.
+> Breeding for 6IV from 6IV + 0IV
 
 * Practically speaking, the most significant number concerning optimal gender ratios is for when you already have a 6IV male and want to propagate it to other egg groups. Here is the graph for starting with a 6IV male and 0IV female (offspring must be a male 6IV; **45-90% male ratio interval**):  
-  ![45-90% male ratio interval, start with 6IV male](https://i.imgur.com/nvbXLK1.png)  
-Our optimal number is around 77% chance for a male offspring. Here is the same graph with a larger y-axis interval for reference  
-  ![45-90% male ratio interval, start with 6IV male](https://i.imgur.com/3YTsKdf.png)  
-  In conclusion: when you're going for male 6IVs to propagate IVs, higher male ratios are noticeably more efficient than 50%. You really want to avoid anything below 50%. There is a sweet spot (around 70-85% male ratio), and efficiency quickly drops off when leaving that range in either direction. Starter Pokemon, which have 87.5% male ratios, are more efficient than normal 50-50 species. The following graph illustrates the drop-off towards a 100% male ratio (where you don't get female progenitor replaces anymore)  
+  ![45-90% male ratio interval, start with 6IV male](https://i.imgur.com/nvbXLK1.png)
+* Our optimal number is around 77% chance for a male offspring. Here is the same graph with a larger y-axis interval for reference  
+  ![45-90% male ratio interval, start with 6IV male](https://i.imgur.com/3YTsKdf.png)
+* In conclusion: when you're going for male 6IVs to propagate IVs, higher male ratios are noticeably more efficient than 50%. You really want to avoid anything below 50%. There is a sweet spot (around 70-85% male ratio), and efficiency quickly drops off when leaving that range in either direction. Starter Pokemon, which have 87.5% male ratios, are more efficient than normal 50-50 species. The following graph illustrates the drop-off towards a 100% male ratio (where you don't get female progenitor replaces anymore)  
   ![65-95% male ratio interval](https://i.imgur.com/RLs3aGg.png)
 
 See below section on [How big is the difference using optimal strategies, really?](#how-big-is-the-difference-using-optimal-strategies-really) for continued comparison!
@@ -520,15 +523,16 @@ _Note_: these are approximations based on simulations, not exact calculation, so
 
 **0IV + 0IV** optimal Destiny Knot, no power items, one-branch (using male as reference, but it goes the same for either specific gender if you swap values):
 
+**Gender-unspecific:**
 * Around **510 breeds** on average for an any-gender 6IV with a 5% male ratio
 * Around **383 breeds** on average for an any-gender 6IV with a 12.5% male ratio
 * Around **338 breeds** on average for an any-gender 6IV with a 23% male ratio
 * ☆ Around **313 breeds** on average for an any-gender 6IV with a 50% male ratio
 * Around **338 breeds** on average for an any-gender 6IV with a 77% male ratio
 * Around **383 breeds** on average for an any-gender 6IV with a 87.5% male ratio
-* Around **510 breeds** on average for an any-gender 6IV with a 95% male ratio
+* Around **510 breeds** on average for an any-gender 6IV with a 95% male ratio  
 
-
+**Gender-specific:**
 * Around **899 breeds** on average for a male 6IV with a 10% male ratio
 * Around **501 breeds** on average for a male 6IV with a 25% male ratio
 * Around **371 breeds** on average for a male 6IV with a 50% male ratio
@@ -537,8 +541,9 @@ _Note_: these are approximations based on simulations, not exact calculation, so
 * Around **392 breeds** on average for a male 6IV with an 87.5% male ratio
 * Around **513 breeds** on average for a male 6IV with a 95% male ratio
 
-**6IV Male + 0IV Female** optimal Destiny Knot, no power items, one-branch (using male as reference, but it goes the same for either specific gender if you swap values):
+**6IV Male + 0IV Female** optimal Destiny Knot, no power items, one-branch (using male as reference, but it goes the same for either specific gender if you swap values):  
 
+**Gender-unspecific:**  
 * ☆ Around **58 breeds** on average for an any-gender 6IV with a 0% male ratio
 * Around **58 breeds** on average for an any-gender 6IV with a 5% male ratio
 * Around **58.5 breeds** on average for an any-gender 6IV with a 12.5% male ratio
@@ -546,9 +551,9 @@ _Note_: these are approximations based on simulations, not exact calculation, so
 * Around **60.5 breeds** on average for an any-gender 6IV with a 50% male ratio
 * Around **67 breeds** on average for an any-gender 6IV with a 77% male ratio
 * Around **76 breeds** on average for an any-gender 6IV with an 87.5% male ratio
-* Around **103 breeds** on average for an any-gender 6IV with a 95% male ratio
+* Around **103 breeds** on average for an any-gender 6IV with a 95% male ratio  
 
-
+**Gender-specific:**
 * Around **343 breeds** on average for a male 6IV with a 10% male ratio
 * Around **154 breeds** on average for a male 6IV with a 25% male ratio
 * Around **93 breeds** on average for a male 6IV with a 50% male ratio
