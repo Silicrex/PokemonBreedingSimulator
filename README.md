@@ -2,23 +2,23 @@
 
 ## Table of Contents
 
-1. [What is this?](#what-is-this)
-2. [Usage](#usage)
-3. [What are the common terms/concepts of this project?](#what-are-the-common-terms-and-concepts-of-this-project)
-4. [What are the goals?](#what-are-the-goals)
-5. [What does each file do?](#what-does-each-file-do)
-6. [Conclusions](#conclusions)
-   6a. [Chance to roll n 31s without inheritance](#chance-to-roll-n-31s-without-inheritance)
-   6b. [Chance to inherit specific stat](#chance-to-inherit-specific-stat)
-   6c. [Unique IVs vs Overall IVs](#unique-ivs-vs-overall-ivs)
-   6d. [When a Destiny Knot is optimal](#when-a-destiny-knot-is-optimal)
-   6e. [When progenitor replacements are optimal](#when-progenitor-replacements-are-optimal)
-   6f. [Power items vs Everstone](#power-items-vs-everstone)
-   6g. [Offspring gender ratio [Graphs]](#offspring-gender-ratio)
-   6h. [Egg group propagation: the how and why [Graphs]](#egg-group-propagation-the-how-and-why)
-   6i. [How big is the difference using optimal strategies, really?](#how-big-is-the-difference-using-optimal-strategies-really)
-7. [Misc comments](#misc-comments)
-8. [Disclaimer](#disclaimer)
+1. [What is this?](#what-is-this)  
+2. [Usage](#usage)  
+3. [What are the common terms/concepts of this project?](#what-are-the-common-terms-and-concepts-of-this-project)  
+4. [What are the goals?](#what-are-the-goals)  
+5. [What does each file do?](#what-does-each-file-do)  
+6. [Conclusions](#conclusions)  
+   6a. [Chance to roll n 31s without inheritance](#chance-to-roll-n-31s-without-inheritance)  
+   6b. [Chance to inherit specific stat](#chance-to-inherit-specific-stat)  
+   6c. [Unique IVs vs Overall IVs](#unique-ivs-vs-overall-ivs)  
+   6d. [When a Destiny Knot is optimal](#when-a-destiny-knot-is-optimal)  
+   6e. [When progenitor replacements are optimal](#when-progenitor-replacements-are-optimal)  
+   6f. [Power items vs Everstone](#power-items-vs-everstone)  
+   6g. [Offspring gender ratio [Graphs]](#offspring-gender-ratio)  
+   6h. [Egg group propagation: the how and why [Graphs]](#egg-group-propagation-the-how-and-why)  
+   6i. [How big is the difference using optimal strategies, really?](#how-big-is-the-difference-using-optimal-strategies-really)  
+7. [Misc comments](#misc-comments)  
+8. [Disclaimer](#disclaimer)  
 
 ## What is this?
 
@@ -95,7 +95,9 @@ In some circumstances, a mathematical formula is used to calculate the real chan
 |  3  | 1/32768 (0.003%)            |
 |  4  | 1/1048576 (0.0001%)         |
 |  5  | 1/33554432 (0.000003%)      |
-|  6  | 1/1073741824 (0.000000093%) |
+|  6  | 1/1073741824 (0.000000093%) |  
+
+
 Rounded percentages; formula is `(1/32)^n`
 
 ### Chance to inherit specific stat
@@ -123,7 +125,6 @@ See below section on [How big is the difference using optimal strategies, really
 
 * It is not always optimal to use a Destiny Knot. You don't want a low mutation rate when the current IV pool is lacking crucial components.  
 * It slightly depends on your breeding approach (between Unique IVs focus vs Overall IVs focus).  
-
 
 * If you are trying to optimally breed to 6IV with Unique IVs focus: DO NOT USE A DESTINY KNOT IF **neither parent is a 6IV and total_unique_31s == total_overall_31s / 2**. This represents the situation where the IV pool doesn't have all 6 unique IVs and all 31s are on overlaps *for example: [31, 31, 31, 0, 0, 0] and [31, 31, 31, 0, 0, 0]  is **missing unique IVs and all 31s are overlaps**.*  As portrayed in the section above, it is better to have a 1IV that gives you a new unique IV than a 5IV which only has overlaps with the other parent. Using a Destiny Knot is optimal in all other scenarios.
 * If you're breeding with an Overall IVs focus, there are only two scenarios to not use a Destiny Knot in: 0IV + 0IV and 1IV + 1IV (1 overlap). 2IV + 2IV (2 overlaps) is close to even efficiency between knot or no knot, but it leans towards using the knot (again, to clarify, only with an Overall IVs focus, which is less efficient for reaching 6IV).  
