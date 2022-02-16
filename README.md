@@ -151,17 +151,17 @@ See below section on [How big is the difference using optimal strategies, really
 * If you don't have any male 6IVs yet— instead of starting with two progenitors and branching exclusively from there, it's faster to do something like... 
   1. Get a Pokemon (that your target 6IV can breed with) for a 31 in each stat (like a Ditto for each IV slot)
   2. Use a Power Item to get three 1IVs (any stat, as long as they're different) with the desired species (skip if you already used the desired species for the step above)
-  3. Use a Power Item + Destiny Knot to get two 2IVs (different genders), covering four unique IVs (one parent from the desired species, one parent from the other one)
+  3. Use a Power Item + Destiny Knot to get two 2IVs (different genders), covering four unique IVs (one parent from the desired species, one parent from the other one for each)
   4. Continuing optimal breeding, use the two 2IVs to get a 4IV of those unique IVs.
   5. For the last two unique IVs you need, use the last of the desired species & other species from before to get a 2IV of the opposite gender as your 4IV.
-  6. Use the 4IV and 2IV covering all six unique IVs to breed to 6IV.
+  6. Use the 4IV and 2IV covering all six unique IVs to breed to 6IV with optimal replacements.
 
 See below section on [How big is the difference using optimal strategies, really?](#how-big-is-the-difference-using-optimal-strategies-really) for a more in-depth comparison!
 
 
 ### Power items vs Everstone
 
-* Power items are **always optimal for reaching 6IV** except for when you either have **two 0IVs**, already have **two 6IVs**, or are breeding for a **particular Nature**. If you're specifically trying to breed (as opposed to nature candying in modern games) a Nature on, it will take the spot of power items and be decently slower.
+* Power items are **always optimal for reaching 6IV** except for when you either have **two 0IVs**, already have **two 6IVs**, or are breeding for a **particular Nature**. If you're specifically trying to breed a Nature on (as opposed to nature candying in modern games), it will take the spot of power items and be decently slower.
 * Say you had **[31, 31, 31, 31, 31, 31]** and **[0, 31, 31, 31, 31, 31]**. If you put a power item for the first IV slot on the first parent, this would be equal to breeding with two 6IVs. It's like a free IV!
 * Power items do make a pretty big difference. With all optimal settings but no power items, it's around **315 breeds** on average to go from two 0IVs to a 6IV offspring (as one branch). With power items, that becomes around **232 breeds**.
 * Starting from 6IV + 0IV goes from around **62 breeds** with no power items to **36 breeds** with power items.
@@ -169,24 +169,24 @@ See below section on [How big is the difference using optimal strategies, really
 ### Offspring gender ratio
 > **When does it matter?**
 
-* Gender ratio mostly comes in concerning egg group propagation. This is because you need male 6IVs to propagate IVs to different species (the female parent determine the species, so you can't use their IVs across different species/egg groups).
-* The progenitors you're starting with have a significant impact on what would be the most efficient gender ratio (if you have a 0IV Male + 6IV Female and are breeding for a 6IV Male, you'd want as high of a male ratio as possible, since the female progenitor is already the best possible and wouldn't need any progress).
+* Gender ratio mostly comes in concerning egg group propagation. This is because you need male 6IVs to propagate IVs to different species (the female parent determines the species, so you can't use their IVs across different species/egg groups).
+* The progenitors you're starting with has a significant impact on what would be the most efficient gender ratio (for instance, if you have a 6IV Male + 0IV Female and are breeding for a 6IV of any gender, you'd want as low of a male ratio as possible, since the male progenitor is already the best possible and wouldn't need any progress, whereas how quickly you can improve the female progenitor would have a significant overall impact).
 > **Breeding for 6IV from 0IV + 0IV**
-* In terms of just 6IV breeding, where offspring gender doesn't matter, gender ratio should be as close to **50-50** as possible. See the below graph on the relationship between chance for a male offspring and average tries to get a 6IV offspring (optimal settings but no power items; **interval of 5%-95% male chance**).  
+* In terms of just 6IV breeding from scratch, where offspring gender doesn't matter, gender ratio should be as close to **50-50** as possible. See the below graph on the relationship between chance for a male offspring and average tries to get a 6IV offspring (optimal settings, no power items, one branch; **interval of 5%-95% male chance**).  
 **Note: please mind the axis labels. These graphs do not start with y at 0.**  
   ![For just 6IVs, 50% is best](https://i.imgur.com/w9pybc6.png)
 * If you're trying to breed a 6IV male (same simulation as above; **interval of 5%-95% male chance**):  
   ![5-95% male ratio interval](https://i.imgur.com/KcCQZwI.png)
 * Here is a closer-up (**interval of 40%-90% male chance**):  
   ![40-90% male ratio interval](https://i.imgur.com/zLa3Sfw.png)
-* 50% is definitely not the optimal point in this case! Starting from scratch, around a 72% chance for a male offspring is the most efficient.
+* 50% is definitely not the optimal point in this case! Starting from scratch, around a 65-72% chance for a male offspring is the most efficient.
 > **Breeding for 6IV from 6IV + 0IV**
 
-* Practically speaking, the most significant number concerning optimal gender ratios is for when you already have a 6IV male and want to propagate it to other egg groups. Here is the graph for starting with a 6IV male and 0IV female (offspring must be a male 6IV; **45-90% male ratio interval**):  
+* Practically speaking, the most significant number concerning optimal gender ratios is for when you already have a 6IV male and want to propagate its IVs to other egg groups. Here is the graph for starting with a 6IV male and 0IV female (offspring must be a male 6IV; **45-90% male ratio interval**):  
   ![45-90% male ratio interval, start with 6IV male](https://i.imgur.com/nvbXLK1.png)
 * Our optimal number is around 77% chance for a male offspring. Here is the same graph with a larger y-axis interval for reference  
   ![45-90% male ratio interval, start with 6IV male](https://i.imgur.com/3YTsKdf.png)
-* In conclusion: when you're going for male 6IVs to propagate IVs, higher male ratios are noticeably more efficient than 50%. You really want to avoid anything below 50%. There is a sweet spot (around 70-85% male ratio), and efficiency quickly drops off when leaving that range in either direction. Starter Pokemon, which have 87.5% male ratios, are more efficient than normal 50-50 species. The following graph illustrates the drop-off towards a 100% male ratio (where you don't get female progenitor replaces anymore)  
+* In conclusion: when you're going for male 6IVs to propagate IVs, higher male ratios are noticeably more efficient than 50%. You really want to avoid anything below 50%. There is a sweet spot (around 70-85% male ratio), and efficiency quickly drops off when leaving that range in either direction. Starter Pokemon, which have 87.5% male ratios, are more efficient than normal 50-50 species. The following graph illustrates the drop-off towards a 100% male ratio (where you don't get female progenitor replacements anymore)  
   ![65-95% male ratio interval](https://i.imgur.com/RLs3aGg.png)
 
 See below section on [How big is the difference using optimal strategies, really?](#how-big-is-the-difference-using-optimal-strategies-really) for continued comparison!
@@ -195,15 +195,15 @@ See below section on [How big is the difference using optimal strategies, really
 
 > **Do we have to start over from scratch each time we want to breed a new 6IV?**
 
-No! Barring genderless/"undiscovered" Pokemon, which can't regularly breed (will not be repeating this clarification, but it applies whenever egg groups are mentioned), once you have a 6IV male, you can propagate (spread) those IVs to all other Pokemon species!
+No! Barring genderless/"undiscovered" Pokemon, which can't regularly breed (will not be repeating this clarification, but it applies whenever egg groups are mentioned), once you have a 6IV male, you can propagate (spread via breeding) those IVs to all other Pokemon species!
 
 > **Egg group interconnectedness**
 
-A lot of Pokemon belong to **two** egg groups. This is the key point of propagating IVs not just to other species in the same egg group, but all other egg groups as well. Below is a graph (generated using https://graphonline.ru/en/) illustrating all the connections using two-egg-group Pokemon in BDSP (there are significantly more connections with the later-added Pokemon).  
+A lot of Pokemon belong to **two** egg groups. This is the key point of propagating IVs not just to other species in the same egg group, but all other egg groups as well. Below is a graph (generated using https://graphonline.ru/en/) illustrating all the connections using two-egg-group Pokemon in BDSP (it does vary between games based on what species are available).  
 ![Number = connection points](https://i.imgur.com/PzHGAC0.png)  
 *Number corresponds to number of connections that egg group has*
 
-For example, say you had three species: one in **Flying and Dragon**, one in **Dragon and Monster**, and one in **Monster and Field**. Each of these two-egg-group species contributes a link between each of their egg groups. Using mutual links, you can travel from one egg group to another even if there are no direct connections. In this case, you could use the **Dragon + Monster** as the intermediary between the **Flying** and **Field** egg groups.
+For example, say you had three species: one in **Flying and Dragon**, one in **Dragon and Monster**, and one in **Monster and Field**. Each of these two-egg-group species contributes a link between each of their egg groups. Using mutual links, you can travel from one egg group to another even if there are no direct connections. In this case, you could use the **Dragon + Monster** as the intermediary between the **Flying** and **Field** egg groups. That would be a chain of **Flying -> Dragon -> Field**.
 
 > **So, what's the strategy?**
 
@@ -241,14 +241,15 @@ SPINDA -> RALTS (UNLOCK AMORPHOUS)
 (connections connect species which share an egg group)
 
 - You start with +2 egg group coverage. Each new species gives you +1 (there are no unnecessary intermediaries to fill in connections).
-- Each egg group's Pokemon has the lowest hatch time for its egg group (aside from when it's 2nd-fastest and the 1st-fastest was used for a different egg group connection already; ie Togepi is the fastest hatch for both Fairy and Flying, but Togepi is used for Fairy and Swablu (who is 2nd-fastest for Flying) is used for Flying).
-- Gender ratio was converted into terms of overall hatch time to be compared
+- Each egg group's Pokemon has the lowest hatch time for its egg group (aside from when it's 2nd-fastest and the 1st-fastest was used for a different egg group connection already; ie Togepi is the fastest hatch for both Fairy and Flying, but Togepi is used for Fairy, and Swablu (who is 2nd-fastest for Flying) is used for Flying).
+- Gender ratio was converted into terms of overall hatch time to be compared. See chart below for more on that.
+- For your starting point, you want to start off with whatever is the easiest, as the first 6IV is the most difficult. The amount of breeds you need to do and required egg cycles for hatching that species multiply together for overall cost, so you want to minimize what is being multiplied here.
 - Five things to note:
   1. Of course, this comes down to RNG. You could get lucky or unlucky. What using an optimal route means is *on
      average* it's the fastest, so it's the best you can do. Same goes for all figures mentioned on this page. There
      can very much be high variance on an individual level.
   2. Pokemon with a high male ratio (Togepi and Charmander are 87.5% male) are harder to start off, but are faster in
-     the long-term (avoids the pain of rolling female 6IVs half the time).
+     the long-term (on average avoids the pain of rolling female 6IVs half the time).
   3. Togepi needs to be evolved to breed, and it's a friendship evo (will evolve the next time it levels up if the
      Friendship stat is at least a certain value). Prepare any friendship berries (the ones which lower EVs but raise
      friendship; Pomeg Berry, Kelpsy Berry, Qualot Berry, Hondew Berry, Grepa Berry, and/or Tamato Berry). It only
@@ -256,12 +257,12 @@ SPINDA -> RALTS (UNLOCK AMORPHOUS)
      confirmation) of these berries to have enough to evolve (then you can just win a battle and the XP share will be
      enough to cause Togepi to level up and evolve). You only need to do this when making a replacement, so at worst 6
      times (initial, 1IV, 2IV... 5IV). This does trade breeding expense for other expenses. Up to you which area you'd
-     rather invest more time into.
+     rather invest more time into (Though, the berries can be done 100% passively. You just need to plant them, water them one time, and them come back 36 hours later to 2-5x your supply. Game doesn't need to be on.).
   4. If you already have a certain 6IV you want which would replace a duo-egg-group slot's species but has higher
      hatch time, you may as well use that instead!
-  5. For your starting point, it may be easier to either mass-catch that Pokemon or Dittos (using PokeRadar) until you
+  5. For your starting point, it's easier to either mass-catch that Pokemon or Dittos (using PokeRadar) until you
      have a 31 in each stat slot (between different individual Pokemon). Since catching is so much faster than
-     breeding, and you're only rolling for one 31, this is an easy way to kick-off.
+     breeding, and you're only rolling for one 31 each, this is an easy way to kick it off. See above section on [When progenitor replacements are optimal](#when-progenitor-replacements-are-optimal) for more detail on this.
 
 > **Make your own route (BDSP)**
 
