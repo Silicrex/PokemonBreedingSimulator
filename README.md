@@ -26,13 +26,13 @@
 * Various simulations for Pokemon **IV breeding**. **IVs** are hereditary values which have a role in determining the **stat values** of a Pokemon (they're like points added onto the species' base stats). Each Pokemon has **six IVs**— one for Health, Attack, Defense, Special Attack, Special Defense, and Speed. IVs range from **0–31** in value.
 * The general **goal** of IV breeding is to get an **offspring with max-value IVs for all six stats**. This could be for **competitive, collector, completionist**, or etc purposes!
 * Progress is made by **selectively breeding** to keep desirable values and remove undesirable values.
-* Testing is all for the **BDSP (Brilliant Diamond & Shining Pearl)** games. Most concepts should apply to all the modern games (only difference I can think of is the egg group propagation; different species available and some species have their egg groups changed between games ie Ralts).
+* Testing is all for the **BDSP (Brilliant Diamond & Shining Pearl)** games. Most concepts should apply to all the modern games (only difference I can think of is the egg group propagation, as there are different species available between different games, and some species have their egg groups changed ie Ralts).
 
 ## Usage
 
 If you want to run the simulations yourself—
 
-Files are meant to be edited and ran in an IDE. Settings are on the top of each script (which has settings). Results are printed to console.
+Files are meant to be edited and ran in an IDE. Settings are on the top of each script (for those which have settings). Results are printed to console.
 
 Example of a settings panel and snippet of output (regular settings for **breed_to_iv.py**, then output from that simulation in interactive mode):
 ![breed_to_iv.py settings panel](https://i.imgur.com/eO49TyT.png)  
@@ -193,11 +193,11 @@ See below section on [How big is the difference using optimal strategies, really
 
 ### Egg group propagation: the how and why
 
-#### Do we have to start over from scratch each time we want to breed a new 6IV?
+> **Do we have to start over from scratch each time we want to breed a new 6IV?**
 
 No! Barring genderless/"undiscovered" Pokemon, which can't regularly breed (will not be repeating this clarification, but it applies whenever egg groups are mentioned), once you have a 6IV male, you can propagate (spread) those IVs to all other Pokemon species!
 
-#### Egg group interconnectedness
+> **Egg group interconnectedness**
 
 A lot of Pokemon belong to **two** egg groups. This is the key point of propagating IVs not just to other species in the same egg group, but all other egg groups as well. Below is a graph (generated using https://graphonline.ru/en/) illustrating all the connections using two-egg-group Pokemon in BDSP (there are significantly more connections with the later-added Pokemon).  
 ![Number = connection points](https://i.imgur.com/PzHGAC0.png)  
@@ -205,13 +205,13 @@ A lot of Pokemon belong to **two** egg groups. This is the key point of propagat
 
 For example, say you had three species: one in **Flying and Dragon**, one in **Dragon and Monster**, and one in **Monster and Field**. Each of these two-egg-group species contributes a link between each of their egg groups. Using mutual links, you can travel from one egg group to another even if there are no direct connections. In this case, you could use the **Dragon + Monster** as the intermediary between the **Flying** and **Field** egg groups.
 
-#### So, what's the strategy?
+> **So, what's the strategy?**
 
 The idea is to have a 6IV male for each egg group. That way, if you ever need to breed a 6IV, you can use the 6IV male you have in the corresponding egg group to easily work towards the 6IV you want. When you're at that point, breeding optimally (Destiny Knot, Power Items, selection strategy), it only takes about **4 breeds** to get to **5IV** (assuming normal gender ratio of 50-50). Including those 4 tries, it's around **36** breeds for a **6IV**!
 
-#### The optimal way of propagating IVs to other egg groups (BDSP)
+> **The optimal way of propagating IVs to other egg groups (BDSP)**
 
-This section is for if you want to reach all of the egg groups as efficiently as possible. I will go into detail aboutthe starting point and how to progress from there, as well as what factors come into play.
+This section is for if you want to reach all of the egg groups as efficiently as possible. I will go into detail about the starting point and how to progress from there, as well as what factors come into play.
 
 The **factors**:
 
@@ -263,7 +263,7 @@ SPINDA -> RALTS (UNLOCK AMORPHOUS)
      have a 31 in each stat slot (between different individual Pokemon). Since catching is so much faster than
      breeding, and you're only rolling for one 31, this is an easy way to kick-off.
 
-#### Make your own route (BDSP)
+> **Make your own route (BDSP)**
 
 Below is a table (for BDSP) of all the duo-egg-group Pokemon, sorted by efficiency.
 
@@ -359,7 +359,7 @@ Below is a table (for BDSP) of all the duo-egg-group Pokemon, sorted by efficien
     [(33.4) 20, 25% Male] Corsola (Water1)
 ```
 
-#### What about starting from scratch for each duo-egg-group?
+> **What about starting from scratch for each duo-egg-group?**
 
 What about, instead of using IV propagation and needing 12 Pokemon to cover all the egg groups (+1 coverage per aside
 from +2 start), we start over from scratch with duo-egg-group Pokemon each time and only use 7 (+2 coverage per aside
