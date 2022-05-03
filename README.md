@@ -446,7 +446,7 @@ the propagation breeds (171.4 - the 5 from Magikarp).
 Next, the from-scratch-centric route: `124.86 * 86.4 + 68 * 20 = 12147.904`. About **12148** total egg cycles. **86.4**
 is the sum of base egg cycles to be done from-scratch, then the **20** is Snorunt's (propagation).
 
-At this point, it's safe to say the propagation approach is notably more efficient. The fourth point is a bit harder to
+At this point, it's safe to say the propagation approach is more efficient based on egg cycles. The fourth point is a bit harder to
 factor in, but it only works in favor of the propagation-centric route anyways (something like 5 breeds wasted for each
 of the initial 1IVs, and then another few each for the 2IVs?).
 
@@ -454,7 +454,17 @@ of the initial 1IVs, and then another few each for the 2IVs?).
 
 It's close, but because of the lack of diversity in low-egg-cycle duo-egg-type Pokemon available in
 BDSP, you can't cut down the base egg cycles enough for the from-scratch approach to overcome the extra breeds per 6IV.
-The propagation approach is more efficient to a worthwhile extent!
+The propagation approach is seemingly more efficient.
+
+_(Later edit)_
+
+One note I need to make— rate of egg production has an effect on this, especially if you don't have the Oval Charm (an item that significantly increases the chance for an egg to be produced on each roll). Every certain number of steps (according to Bulbapedia (https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_breeding) it's 256, but this doesn't seem consistent with my Poketch step counter, so I'm unsure), the game does an RNG roll to see if an egg should be produced or not. According to Bulbapedia:
+* If the Pokemon breeding are incompatible, the chance is **0%**
+* If the Pokemon are different species and were caught by the same trainer, it's **20%** (**40% with Oval Charm**)
+* If either the species is the same or original trainer is different, it's **50%** (**80% with Oval Charm**)
+* If both the species is the same and the original trainer is different, it's **70%** (**88% with Oval Charm**)
+
+Since you will always be using the same species with the from-scratch approach (aside from last one), you will be getting eggs significantly faster. Does this necessarily matter? No, because you can only carry 5 at a time to hatch when you have a **Flame Body** / **Magma Armor** Pokemon (it's an ability with a special out-of-battle effect) to reduce hatch time by 50%, and most of the time you'll have more than that overall anyway. The **Oval Charm** is very effective at mitigating the difference, but it's still noticeable. In my experience, it is enough that you don't have to worry about eggs not being produced quickly enough for the most part (also consider if you get a 6IV female, you can swap that in instead of continuing to use the 6IV different-species male for the same-species benefit). It is something to consider, though— especially for later games where the pool of dual-egg-group Pokemon to use for your route is larger. This might be enough to give it the edge over the propagation approach even in this generation. I doubt it, but this could use further investigation.
 
 ### How big is the difference using optimal strategies, really?
 
