@@ -253,10 +253,9 @@ SPINDA -> RALTS (UNLOCK AMORPHOUS)
   3. Togepi needs to be evolved to breed, and it's a friendship evo (will evolve the next time it levels up if the
      Friendship stat is at least a certain value). Prepare any friendship berries (the ones which lower EVs but raise
      friendship; Pomeg Berry, Kelpsy Berry, Qualot Berry, Hondew Berry, Grepa Berry, and/or Tamato Berry). It only
-     takes a Soothe Bell (held item to have the Togepi hold which multiplies friendship gained) and 8 (~~pending
-     confirmation~~ confirmed for hatched -> Soothe Bell -> 8 friendship berries -> any level up on togepi/azurill (_later edit:_ Doesn't seem to be the case for Riolu, not sure if it depends on species or what makes the difference; needs further research)) of these berries to have enough to evolve (then you can just win a battle and the XP share will be
-     enough to cause Togepi to level up and evolve). You only need to do this when making a replacement, so at worst 6
-     times (initial, 1IV, 2IV... 5IV). This does trade breeding expense for other expenses. Up to you which area you'd
+     takes a Soothe Bell and 8 of these berries to have enough to evolve (then you can just win a battle and the XP share will be
+     enough to cause Togepi to level up and evolve). To clarify— it takes **8 friendship berries** to have enough **friendship** for a **hatched Pokemon** that is **holding a Soothe Bell**. You only need to do this when making a replacement, so at worst 6
+     times (initial, 1IV, 2IV... 5IV; although when propagating you usually skip straight to 3/4IV from hatching multiple eggs anyway). This does trade breeding expense for other expenses. Up to you which area you'd
      rather invest more time into (Though, the berries can be done 100% passively. You just need to plant them, water them one time, and them come back 36 hours later to 2-5x your supply. Game doesn't need to be on.).
   4. If you already have a certain 6IV you want which would replace a duo-egg-group slot's species but has higher
      hatch time, you may as well use that instead!
