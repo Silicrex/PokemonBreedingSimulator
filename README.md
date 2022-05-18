@@ -473,6 +473,10 @@ Another way of totally negating this aspect is if you have a friend/second copy 
 
 Overall it's something to consider especially for later games where the pool of dual-egg-group Pokemon to use for your route is larger. My impression is that it's not enough to make a big enough difference for this game (especially since from-scratch has so many more switches necessary and that wasn't even factored in yet).
 
+_(Later later edit)_
+
+This is kind of a random note, but also, turn off your background music to make the process faster. The game pauses for a length of time when playing certain sound effects. For example, the sound effect after hatching an egg. When these sound effects are disabled by setting Background Music to 0, the pause is skipped.
+
 ### How big is the difference using optimal strategies, really?
 
 > **Destiny Knot vs No Destiny Knot**
