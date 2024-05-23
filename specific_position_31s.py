@@ -1,9 +1,9 @@
 from helper_functions import *
 
 # ---------- SETTINGS
-specific_slots_num = 2  # Going for how many specific slots?
+specific_slots_num = 5  # Going for how many specific slots?
 do_replacements = True  # Replace progenitors as progress is made True/False
-destiny_knot_setting = None  # [None = use optimally] [True = always use] [False = never use]
+destiny_knot_setting = True  # [None = use optimally (for 6iv)] [True = always use] [False = never use]
 power_item_setting = True  # False = don't use. True = automatically use optimally. Or...
 # Can manually provide power item data: needs to be a dict in this format {'slot': int, 'parent': string (gender)}
 # For example, {'slot': 0, 'parent': 'male'}
@@ -15,8 +15,10 @@ interactive = False  # Pause after each breed, print detailed info (press enter 
 
 # ---------- Starting progenitors
 # For easy copy/paste: [31, 31, 31, 31, 31, 31] [0, 0, 0, 0, 0, 0]
-male_base = [31, 0, 0, 0, 0, 0]
-female_base = [0, 31, 0, 0, 0, 0]
+# Order 31s to the left. ie 5IV = [31, 31, 31, 31, 31, 0].
+# Intended for generally-applicable numbers rather than actual specific IV spread
+male_base = [31, 31, 31, 31, 31, 31]
+female_base = [31, 31, 31, 31, 31, 0]
 
 if seed is not None:
     random.seed(seed)
@@ -24,7 +26,6 @@ if seed is not None:
 list_of_slots = list(range(specific_slots_num))
 
 all_tries = 0  # Total tries to reach goal from each run, averaged at the end
-count2 = 0
 for _ in range(runs):
     male = male_base.copy()
     female = female_base.copy()
@@ -52,7 +53,7 @@ for _ in range(runs):
             destiny_knot = destiny_knot_setting  # Bool
         power_item_data = None
         if power_item_setting is True:
-            power_item_data = check_for_power_item(male, female)
+            power_item_data = check_for_specific_pos_power_item(male, female, specific_slots_num)
         elif isinstance(power_item_setting, dict):
             power_item_data = power_item_setting.copy()
         iv_slots = roll_inheritance(destiny_knot, power_item_data)
@@ -65,12 +66,12 @@ for _ in range(runs):
         offspring_31s = offspring.count(31)
         offspring_gender = roll_gender(male_chance)
         if offspring_gender == 'male':
-            if do_replacements and check_for_specific_positions_replace(male, female, offspring, specific_slots_num):
+            if do_replacements and check_for_specific_pos_replace(male, female, offspring, specific_slots_num):
                 if interactive:
                     print('>>> Replace male')
                 male = offspring.copy()
         else:
-            if do_replacements and check_for_specific_positions_replace(female, male, offspring, specific_slots_num):
+            if do_replacements and check_for_specific_pos_replace(female, male, offspring, specific_slots_num):
                 if interactive:
                     print('>>> Replace female')
                 female = offspring.copy()

@@ -4,19 +4,19 @@ from helper_functions import *
 target_31s = 6  # AT LEAST how many 31 IVs is the goal? 6 = 6IV, must be between 0-6.
 do_replacements = True  # Replace progenitors as progress is made True/False
 destiny_knot_setting = None  # [None = use optimally] [True = always use] [False = never use]
-power_item_setting = True  # False = don't use. True = automatically use optimally. Or...
+power_item_setting = False  # False = don't use. True = automatically use optimally. Or...
 # Can manually provide power item data: needs to be a dict in this format {'slot': int, 'parent': string (gender)}
 # For example, {'slot': 0, 'parent': 'male'}
 must_be_male = False  # Is the goal a male 6IV offspring instead of any 6IV offspring?
 male_chance = 0.5  # Chance for offspring to be male
-runs = 1000  # How many trials to use to find an average
+runs = 100000  # How many trials to use to find an average
 seed = None  # None (random) or seed
 interactive = False  # Pause after each breed, print detailed info (press enter or send any input to continue)
 
 # ---------- Starting progenitors
 # For easy copy/paste: [31, 31, 31, 31, 31, 31] [0, 0, 0, 0, 0, 0]
-male_base = [31, 31, 31, 31, 31, 31]
-female_base = [0, 0, 0, 0, 0, 0]
+male_base = [31, 31, 31, 31, 31, 0]
+female_base = [31, 31, 31, 31, 31, 31]
 
 if seed is not None:
     random.seed(seed)

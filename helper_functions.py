@@ -35,8 +35,20 @@ def check_for_power_item(male, female):
     return power_item_data
 
 
+def check_for_specific_pos_power_item(male, female, specific_slots: int):
+    power_item_data = None
+    for i in range(specific_slots):
+        if male[i] == 31:  # Power item optimal when one parent has 31 in spot other doesn't
+            power_item_data = {'slot': i, 'parent': 'male'}
+            break
+        elif female[i] == 31:
+            power_item_data = {'slot': i, 'parent': 'female'}
+            break
+    return power_item_data
+
+
 # For determining which IVs to inherit, numbers are slot numbers
-def roll_inheritance(destiny_knot=False, power_item_data=None):  # power_item would be an int for slot 0-5
+def roll_inheritance(destiny_knot=False, power_item_data=None):
     iv_slots = [0, 1, 2, 3, 4, 5]
     if destiny_knot:  # Remove 1
         iv_slots.remove(random.choice(iv_slots))
@@ -122,7 +134,7 @@ def check_for_replace(same_gender, other_gender, offspring, prioritize_overalls=
         return False
 
 
-def check_for_specific_positions_replace(same_gender, other_gender, offspring, specific_slots_num):
+def check_for_specific_pos_replace(same_gender, other_gender, offspring, specific_slots_num):
     same_gender_31s = same_gender.count(31)
     offspring_31s = offspring.count(31)
 
