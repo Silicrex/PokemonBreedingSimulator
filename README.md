@@ -253,10 +253,9 @@ SPINDA -> RALTS (UNLOCK AMORPHOUS)
   3. Togepi needs to be evolved to breed, and it's a friendship evo (will evolve the next time it levels up if the
      Friendship stat is at least a certain value). Prepare any friendship berries (the ones which lower EVs but raise
      friendship; Pomeg Berry, Kelpsy Berry, Qualot Berry, Hondew Berry, Grepa Berry, and/or Tamato Berry). It only
-     takes a Soothe Bell (held item to have the Togepi hold which multiplies friendship gained) and 8 (~~pending
-     confirmation~~ confirmed for hatched -> Soothe Bell -> 8 friendship berries -> any level up) of these berries to have enough to evolve (then you can just win a battle and the XP share will be
-     enough to cause Togepi to level up and evolve). You only need to do this when making a replacement, so at worst 6
-     times (initial, 1IV, 2IV... 5IV). This does trade breeding expense for other expenses. Up to you which area you'd
+     takes a Soothe Bell and 8 of these berries to have enough to evolve (then you can just win a battle and the XP share will be
+     enough to cause Togepi to level up and evolve). To clarify— it takes **8 friendship berries** to have enough **friendship** for a **hatched Pokemon** that is **holding a Soothe Bell** **(EDIT: I'm not sure why, but I am not finding perfect consistency with this. 8 is enough much of the time, but sometimes I need more. Unsure if this is bug-related or needs further research.)**. You only need to do this when making a replacement, so at worst 6
+     times (initial, 1IV, 2IV... 5IV; although when propagating you usually skip straight to 3/4IV from hatching multiple eggs anyway). This does trade breeding expense for other expenses. Up to you which area you'd
      rather invest more time into (Though, the berries can be done 100% passively. You just need to plant them, water them one time, and them come back 36 hours later to 2-5x your supply. Game doesn't need to be on.).
   4. If you already have a certain 6IV you want which would replace a duo-egg-group slot's species but has higher
      hatch time, you may as well use that instead!
@@ -446,7 +445,7 @@ the propagation breeds (171.4 - the 5 from Magikarp).
 Next, the from-scratch-centric route: `124.86 * 86.4 + 68 * 20 = 12147.904`. About **12148** total egg cycles. **86.4**
 is the sum of base egg cycles to be done from-scratch, then the **20** is Snorunt's (propagation).
 
-At this point, it's safe to say the propagation approach is notably more efficient. The fourth point is a bit harder to
+At this point, it's safe to say the propagation approach is more efficient based on egg cycles. The fourth point is a bit harder to
 factor in, but it only works in favor of the propagation-centric route anyways (something like 5 breeds wasted for each
 of the initial 1IVs, and then another few each for the 2IVs?).
 
@@ -454,7 +453,29 @@ of the initial 1IVs, and then another few each for the 2IVs?).
 
 It's close, but because of the lack of diversity in low-egg-cycle duo-egg-type Pokemon available in
 BDSP, you can't cut down the base egg cycles enough for the from-scratch approach to overcome the extra breeds per 6IV.
-The propagation approach is more efficient to a worthwhile extent!
+The propagation approach is seemingly more efficient.
+
+_(Later edit)_
+
+One note I need to make— rate of egg production has an effect on this, especially if you don't have the Oval Charm (an item that significantly increases the chance for an egg to be produced on each roll). Every certain number of steps (according to Bulbapedia (https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_breeding) it's 256, but this doesn't seem consistent with my Poketch step counter, so I'm unsure), the game does an RNG roll to see if an egg should be produced or not. According to Bulbapedia:
+* If the Pokemon breeding are incompatible, the chance is **0%**
+* If the Pokemon are different species and were caught by the same trainer, it's **20%** (**40% with Oval Charm**)
+* If either the species is the same or original trainer is different, it's **50%** (**80% with Oval Charm**)
+* If both the species is the same and the original trainer is different, it's **70%** (**88% with Oval Charm**)
+
+Since you will always be using the same species with the from-scratch approach (aside from last one), you will be getting eggs significantly faster. Does this necessarily matter? No, because you can only carry a certain amount of eggs to hatch at a time (5 when you have a **Flame Body** / **Magma Armor** Pokemon in your party (it's an ability with a special out-of-battle effect that reduces hatch time by 50% and is very necessary), and most of the time you'll have more than that overall anyway. With this increased rate, you will probably end up with max excess for 15+ egg cycle Pokemon (if not for even lower egg cycle ones; and be careful with that in BDSP, since you can't release eggs, they must be hatched).
+
+The **Oval Charm** is very effective at mitigating the difference. In my experience, it is enough that you will already have an excess amount of eggs the majority of the time (especially for the 15+ egg cycle Pokemon). Also consider that if you get a 6IV female first during the propagation approach, you can swap that in for the same-species benefit as well (worth keeping at least one 5IV male around for this reason, just in case; you're switching from a different-species 6IV Male + intended-species 5IV female to an intended-species 6IV female + intended-species 5IV male).
+
+Without the same-species bonus, it does take more active engagement as how efficiently you pick up the new eggs becomes important, since you can't generate a new egg without picking up the prior one from the breeder (you can still increase the step counter towards the next roll before picking it up, but it's a wasted roll if you don't pick it up before the roll happens).
+
+Another way of totally negating this aspect is if you have a friend/second copy of BDSP and can get your 5IV Female for the breeding process from there (this also substantially increases the Shiny odds if done with a copy set to a different language (https://bulbapedia.bulbagarden.net/wiki/Masuda_method)). You could trade the 6IV Male & 5IV Female you were using already once you get to that point (or really anywhere earlier in the process), breed on the other game until you get a new 5IV Female, and then trade them back. Being from a different trainer will give the same boost to the rate of egg production. If you have an Oval Charm, either this or the same-species boost is more than enough, there's no need to worry about both (aside from maybe Magikarp, _maaybeee_ the 10 egg cycle ones, but either way it's extremely diminishing returns the more bonuses you stack and probably not worth the hassle). 
+
+Overall it's something to consider especially for later games where the pool of dual-egg-group Pokemon to use for your route is larger. My impression is that it's not enough to make a big enough difference for this game (especially since from-scratch has so many more switches necessary and that wasn't even factored in yet).
+
+_(Later later edit)_
+
+This is kind of a random note, but also, turn off your background music to make the process faster. The game pauses for a length of time when playing certain sound effects. For example, the sound effect after hatching an egg. When these sound effects are disabled by setting Background Music to 0, the pause is skipped.
 
 ### How big is the difference using optimal strategies, really?
 
