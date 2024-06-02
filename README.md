@@ -65,7 +65,7 @@ Example of a settings panel and snippet of output (regular settings for **breed_
 * In particular, there were three primary areas I wanted to investigate (though it extended to several other areas in the process). **Optimal Destiny Knot usage**, **most efficient selection strategy**, and **egg group propagation**
 * **Optimal Destiny Knot usage** to understand when inheriting more IVs from parents is beneficial and when it's actually disadvantageous. Under what circumstances should I use a Destiny Knot?
 * **Most efficient selection strategy** to understand how to prioritize which progenitors to use. Of course, we want to accomplish the goal as efficiently as possible— and aside from knowing what tools you need to use, the biggest thing which impacts this is how you choose when to replace progenitors (thus affecting the active IV pool).
-* **Egg group propagation** to propagate the IVs of the first male 6IV offspring to all other egg groups (aside from genderless/undiscovered) to never need to start from scratch again (and also spend the least possible breeding effort in propagating the IVs— this was definitely the trickiest part of the project).
+* **Egg group propagation** to propagate the IVs of the first male 6IV offspring to all other egg groups (aside from no egg group/undiscovered) to never need to start from scratch again (and also spend the least possible breeding effort in propagating the IVs— this was definitely the trickiest part of the project).
 
 ## What does each file do?
 
@@ -161,7 +161,7 @@ See below section on [How big is the difference using optimal strategies, really
 
 ### Power items vs Everstone
 
-* Power items are **always optimal for reaching 6IV** except for when you either have **two 0IVs**, already have **two 6IVs**, or are breeding for a **particular Nature**. If you're specifically trying to breed a Nature on (as opposed to nature candying in modern games), it will take the spot of power items and be decently slower.
+* Power items are **always optimal for reaching 6IV** except for when you either have **two 0IVs**, already have **two 6IVs**, or are breeding for a **particular Nature**. If you're specifically trying to breed a Nature on (as opposed to nature candying in modern games), it will take the spot of power items and be decently slower. If you have a 5IV + 6IV, it's a 1/32 chance for a 6IV offspring using Power Items correctly vs 1/55 chance without them.
 * Say you had **[31, 31, 31, 31, 31, 31]** and **[0, 31, 31, 31, 31, 31]**. If you put a power item for the first IV slot on the first parent, this would be equal to breeding with two 6IVs. It's like a free IV!
 * Power items do make a pretty big difference. With all optimal settings but no power items, it's around **315 breeds** on average to go from two 0IVs to a 6IV offspring (as one branch). With power items, that becomes around **232 breeds**.
 * Starting from 6IV + 0IV goes from around **62 breeds** with no power items to **36 breeds** with power items.
@@ -195,7 +195,7 @@ See below section on [How big is the difference using optimal strategies, really
 
 > **Do we have to start over from scratch each time we want to breed a new 6IV?**
 
-No! Barring genderless/"undiscovered" Pokemon, which can't regularly breed (will not be repeating this clarification, but it applies whenever egg groups are mentioned), once you have a 6IV male, you can propagate (spread via breeding) those IVs to all other Pokemon species!
+No! Barring no egg group/"undiscovered" Pokemon, which can't regularly breed (will not be repeating this clarification, but it applies whenever egg groups are mentioned), once you have a 6IV male, you can propagate (spread via breeding) those IVs to all other Pokemon species!
 
 > **Egg group interconnectedness**
 
